@@ -6,39 +6,73 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  home: boolean = true;
-  messages: boolean = false;
-  homeowner: boolean = false;
-  homebuilder: boolean = false;
+  home1 = true;
+  home: string = 'home-active';
+  messages:  string = 'disappear';
+  homeOwnersProfiles: string = 'disappear';
+  buildersProfiles: string = 'disappear';
+  homeOwnersrequests:  string = 'disappear';
+  buildersQuotations :  string = 'disappear';
 
-  constructor() {
+  constructor() {}
+//active
+active: string = '';
 
-  }
-
-  homeFunc() {
-    this.home = true;
-    this.messages = false;
-    this.homeowner = false;
-    this.homebuilder = false;
-  }
+   homeFunc() {
+    this.home = 'home-active';
+    this.messages = 'disappear';
+    this.homeOwnersProfiles = 'disappear';
+    this.buildersProfiles = 'disappear';
+    this.homeOwnersrequests = 'disappear';
+    this. buildersQuotations = 'disappear';
+  } 
   messagesFunc() {
-    this.home = false;
-    this.messages = true;
-    this.homeowner = false;
-    this.homebuilder = false;
+    this.home = 'home-inactive';
+    this.messages = 'appear';
+    this.homeOwnersProfiles = 'disappear';
+    this.buildersProfiles = 'disappear';
+    this.homeOwnersrequests = 'disappear';
+    this. buildersQuotations = 'disappear';
   }
-  homeOwnerFunc() {
-    this.home = false;
-    this.messages = false;
-    this.homeowner = true;
-    this.homebuilder = false;
+  homeOwnerProfilesFunc() {
+    this.home = 'disappear';
+    this.messages = 'disappear';
+    this.homeOwnersProfiles = 'appear';
+    this.buildersProfiles = 'disappear';
+    this.homeOwnersrequests = 'disappear';
+    this. buildersQuotations = 'disappear';
 
   }
-  homebuilderFunc() {
-    this.home = false;
-    this.messages = false;
-    this.homeowner = false;
-    this.homebuilder = true;
+  builderProfilesFunc() {
+    this.home = 'disappear';
+    this.messages = 'disappear';
+    this.homeOwnersProfiles = 'disappear';
+    this.buildersProfiles = 'appear';
+    this.homeOwnersrequests = 'disappear';
+    this. buildersQuotations = 'disappear';
   }
+
+/*   ownersrequestsFunc() {
+    this.home = 'disappear';
+    this.messages = 'disappear';
+    this.homeOwnersProfiles = 'disappear';
+    this.buildersProfiles = 'disappear';
+    this.homeOwnersrequests = 'disappear';
+    this. buildersQuotations = 'disappear';
+  }
+
+  builderquotationsFunc() {
+    this.home = 'disappear';
+    this.messages = 'disappear';
+    this.homeOwnersProfiles = 'disappear';
+    this.buildersProfiles = 'disappear';
+    this.homeOwnersrequests = 'disappear';
+    this. buildersQuotations = 'disappear';
+  } */
+
+  gohome(){
+    this.home1 = !this.home1
+  }
+
 
 }
