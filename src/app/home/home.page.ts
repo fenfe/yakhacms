@@ -8,14 +8,48 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  home: boolean = true;
-  messages: boolean = false;
-  homeowner: boolean = false;
-  homebuilder: boolean = false;
+  home1 = true;
+  home: string = 'home-active';
+  messages:  string = 'disappear';
+  homeOwnersProfiles: string = 'disappear';
+  buildersProfiles: string = 'disappear';
+  homeOwnersrequests:  string = 'disappear';
+  buildersQuotations :  string = 'disappear';
 
+<<<<<<< HEAD
+  constructor() {}
+//active
+active: string = '';
+=======
   constructor(private router: Router, public loadingController: LoadingController) {
+>>>>>>> 7e1566c5d8db2c3fd7de1372c004481f66b85885
 
+   homeFunc() {
+    this.home = 'home-active';
+    this.messages = 'disappear';
+    this.homeOwnersProfiles = 'disappear';
+    this.buildersProfiles = 'disappear';
+    this.homeOwnersrequests = 'disappear';
+    this. buildersQuotations = 'disappear';
+  } 
+  messagesFunc() {
+    this.home = 'home-inactive';
+    this.messages = 'appear';
+    this.homeOwnersProfiles = 'disappear';
+    this.buildersProfiles = 'disappear';
+    this.homeOwnersrequests = 'disappear';
+    this. buildersQuotations = 'disappear';
   }
+<<<<<<< HEAD
+  homeOwnerProfilesFunc() {
+    this.home = 'disappear';
+    this.messages = 'disappear';
+    this.homeOwnersProfiles = 'appear';
+    this.buildersProfiles = 'disappear';
+    this.homeOwnersrequests = 'disappear';
+    this. buildersQuotations = 'disappear';
+
+=======
   logout(){
     this.presentLoadingWithOptions();
     firebase.auth().signOut().then(()=>{
@@ -36,25 +70,38 @@ export class HomePage {
     this.messages = false;
     this.homeowner = false;
     this.homebuilder = false;
+>>>>>>> 7e1566c5d8db2c3fd7de1372c004481f66b85885
   }
-  messagesFunc() {
-    this.home = false;
-    this.messages = true;
-    this.homeowner = false;
-    this.homebuilder = false;
+  builderProfilesFunc() {
+    this.home = 'disappear';
+    this.messages = 'disappear';
+    this.homeOwnersProfiles = 'disappear';
+    this.buildersProfiles = 'appear';
+    this.homeOwnersrequests = 'disappear';
+    this. buildersQuotations = 'disappear';
   }
-  homeOwnerFunc() {
-    this.home = false;
-    this.messages = false;
-    this.homeowner = true;
-    this.homebuilder = false;
 
+/*   ownersrequestsFunc() {
+    this.home = 'disappear';
+    this.messages = 'disappear';
+    this.homeOwnersProfiles = 'disappear';
+    this.buildersProfiles = 'disappear';
+    this.homeOwnersrequests = 'disappear';
+    this. buildersQuotations = 'disappear';
   }
-  homebuilderFunc() {
-    this.home = false;
-    this.messages = false;
-    this.homeowner = false;
-    this.homebuilder = true;
+
+  builderquotationsFunc() {
+    this.home = 'disappear';
+    this.messages = 'disappear';
+    this.homeOwnersProfiles = 'disappear';
+    this.buildersProfiles = 'disappear';
+    this.homeOwnersrequests = 'disappear';
+    this. buildersQuotations = 'disappear';
+  } */
+
+  gohome(){
+    this.home1 = !this.home1
   }
+
 
 }
