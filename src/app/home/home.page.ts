@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-
+import * as firebase from 'firebase';
+import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -11,10 +13,24 @@ export class HomePage {
   homeowner: boolean = false;
   homebuilder: boolean = false;
 
-  constructor() {
+  constructor(private router: Router, public loadingController: LoadingController) {
 
   }
-
+  logout(){
+    this.presentLoadingWithOptions();
+    firebase.auth().signOut().then(()=>{
+      this.router.navigateByUrl('login');
+    })
+  }
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      duration: 1000,
+      message: 'Logging out...',
+      translucent: true,
+      cssClass: "danger",
+    });
+    return await loading.present();
+  }
   homeFunc() {
     this.home = true;
     this.messages = false;
