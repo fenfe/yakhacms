@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
 import { snapshotToArray } from '../app.firebase.config';
 import { LoadingController, AlertController } from '@ionic/angular';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -18,8 +19,9 @@ export class LoginPage implements OnInit {
   }
 
   login(){
+ 
     this.presentLoadingWithOptions();
-    firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((res)=>{ 
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((res)=>{ 
      // console.log(snapshotToArray(res));
       this.password = '';
       this.email = '';
