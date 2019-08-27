@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { snapshotToArray } from '../app.firebase.config';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -15,15 +16,24 @@ export class HomePage {
   buildersProfiles: string = 'disappear';
   homeOwnersrequests:  string = 'disappear';
   buildersQuotations :  string = 'disappear';
-
-<<<<<<< HEAD
-  constructor() {}
-//active
-active: string = '';
-=======
+  dbHomeOwner = firebase.firestore().collection('HomeOwnerProfile');
+  dbBuilder = firebase.firestore().collection('builderProfile');
+  numHomeOwner = 0;
+  numBuilder = 0;
+  
   constructor(private router: Router, public loadingController: LoadingController) {
->>>>>>> 7e1566c5d8db2c3fd7de1372c004481f66b85885
+   // this.numHomeOwner = 4;
+    this.dbHomeOwner.get().then((res)=>{
+     this.numHomeOwner = res.size;
+    })
 
+    this.dbBuilder.get().then((res)=>{
+      this.numBuilder = res.size;
+     })
+}
+homeOwnerList(){
+  this.router.navigateByUrl('messages');
+}
    homeFunc() {
     this.home = 'home-active';
     this.messages = 'disappear';
@@ -40,16 +50,6 @@ active: string = '';
     this.homeOwnersrequests = 'disappear';
     this. buildersQuotations = 'disappear';
   }
-<<<<<<< HEAD
-  homeOwnerProfilesFunc() {
-    this.home = 'disappear';
-    this.messages = 'disappear';
-    this.homeOwnersProfiles = 'appear';
-    this.buildersProfiles = 'disappear';
-    this.homeOwnersrequests = 'disappear';
-    this. buildersQuotations = 'disappear';
-
-=======
   logout(){
     this.presentLoadingWithOptions();
     firebase.auth().signOut().then(()=>{
@@ -65,13 +65,12 @@ active: string = '';
     });
     return await loading.present();
   }
-  homeFunc() {
-    this.home = true;
-    this.messages = false;
-    this.homeowner = false;
-    this.homebuilder = false;
->>>>>>> 7e1566c5d8db2c3fd7de1372c004481f66b85885
-  }
+  // homeFunc() {
+  //   this.home = true;
+  //   this.messages = false;
+  //   this.homeowner = false;
+  //   this.homebuilder = false;
+  // }
   builderProfilesFunc() {
     this.home = 'disappear';
     this.messages = 'disappear';
