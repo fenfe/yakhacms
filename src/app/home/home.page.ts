@@ -8,48 +8,45 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  home1 = true;
+  //active: string = 'active';
+ 
   home: string = 'home-active';
-  messages:  string = 'disappear';
-  homeOwnersProfiles: string = 'disappear';
-  buildersProfiles: string = 'disappear';
-  homeOwnersrequests:  string = 'disappear';
-  buildersQuotations :  string = 'disappear';
-
-<<<<<<< HEAD
-  constructor() {}
-//active
-active: string = '';
-=======
+  messages:  string = 'messages-inactive';
+  homeOwnerProfiles: string = 'homeOwnerProfiles-inactive';
+  builderProfiles: string = 'builderProfiles-inactive';
+ /*  homeOwnersrequests:  string = 'disappear';
+  buildersQuotations :  string = 'disappear'; */
+navigation: string = "Dashboard/Home";
   constructor(private router: Router, public loadingController: LoadingController) {
->>>>>>> 7e1566c5d8db2c3fd7de1372c004481f66b85885
+  }
 
    homeFunc() {
+    this.navigation = "Dashboard/Home";
     this.home = 'home-active';
-    this.messages = 'disappear';
-    this.homeOwnersProfiles = 'disappear';
-    this.buildersProfiles = 'disappear';
-    this.homeOwnersrequests = 'disappear';
-    this. buildersQuotations = 'disappear';
+    this.messages = 'messages-inactive';
+    this.homeOwnerProfiles = 'homeOwnerProfiles-inactive';
+    this.builderProfiles = 'builderProfiles-inactive';
+   /*  this.homeOwnersrequests = 'disappear';
+    this. buildersQuotations = 'disappear';  */
   } 
   messagesFunc() {
+    this.navigation = "Dashboard/Messages";
     this.home = 'home-inactive';
-    this.messages = 'appear';
-    this.homeOwnersProfiles = 'disappear';
-    this.buildersProfiles = 'disappear';
-    this.homeOwnersrequests = 'disappear';
-    this. buildersQuotations = 'disappear';
+    this.messages = 'messages-active';
+     this.homeOwnerProfiles = 'homeOwnerProfiles-inactive';
+    this.builderProfiles = 'builderProfiles-inactive';
+    /* this.homeOwnersrequests = 'disappear';
+    this. buildersQuotations = 'home-inactive';  */
   }
-<<<<<<< HEAD
   homeOwnerProfilesFunc() {
-    this.home = 'disappear';
-    this.messages = 'disappear';
-    this.homeOwnersProfiles = 'appear';
-    this.buildersProfiles = 'disappear';
-    this.homeOwnersrequests = 'disappear';
-    this. buildersQuotations = 'disappear';
-
-=======
+    this.navigation = "Dashboard/HomeOwnersProfiles";
+    this.home = 'home-inactive';
+    this.messages = 'messages-inactive';
+    this.homeOwnerProfiles = 'homeOwnerProfiles-active';
+    this.builderProfiles = 'builderProfiles-inactive';
+  /*   this.homeOwnersrequests = 'home-inactive';
+    this. buildersQuotations = 'home-inactive'; */
+  }
   logout(){
     this.presentLoadingWithOptions();
     firebase.auth().signOut().then(()=>{
@@ -65,20 +62,20 @@ active: string = '';
     });
     return await loading.present();
   }
-  homeFunc() {
-    this.home = true;
-    this.messages = false;
-    this.homeowner = false;
-    this.homebuilder = false;
->>>>>>> 7e1566c5d8db2c3fd7de1372c004481f66b85885
-  }
+  // homeFunc() {
+  //   this.home = true;
+  //   this.messages = false;
+  //   this.homeowner = false;
+  //   this.homebuilder = false;
+  // }
   builderProfilesFunc() {
-    this.home = 'disappear';
-    this.messages = 'disappear';
-    this.homeOwnersProfiles = 'disappear';
-    this.buildersProfiles = 'appear';
-    this.homeOwnersrequests = 'disappear';
-    this. buildersQuotations = 'disappear';
+    this.navigation = "Dashboard/BuildersProfiles";
+    this.home = 'home-inactive';
+    this.messages = 'messages-inactive';
+    this.homeOwnerProfiles = 'homeOwnerProfiles-inactive';
+    this.builderProfiles = 'builderProfiles-active';
+/*     this.homeOwnersrequests = 'disappear';
+    this. buildersQuotations = 'disappear'; */
   }
 
 /*   ownersrequestsFunc() {
@@ -99,9 +96,7 @@ active: string = '';
     this. buildersQuotations = 'disappear';
   } */
 
-  gohome(){
-    this.home1 = !this.home1
-  }
+  
 
 
 }
