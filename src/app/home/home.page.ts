@@ -10,9 +10,14 @@ import { snapshotToArray } from '../app.firebase.config';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  home1 = true;
+  //active: string = 'active';
+ 
   home: string = 'home-active';
-  messages: string = 'disappear';
+  messages:  string = 'messages-inactive';
+  homeOwnerProfiles: string = 'homeOwnerProfiles-inactive';
+  builderProfiles: string = 'builderProfiles-inactive';
+ /*  homeOwnersrequests:  string = 'disappear';
+  buildersQuotations :  string = 'disappear'; */ // messages:  string = 'disappear';
   homeOwnersProfiles: string = 'disappear';
   buildersProfiles: string = 'disappear';
   homeOwnersrequests: string = 'disappear';
@@ -21,48 +26,91 @@ export class HomePage {
   dbBuilder = firebase.firestore().collection('builderProfile');
   numHomeOwner = 0;
   numBuilder = 0;
-  
-  constructor(private router: Router, public loadingController: LoadingController, public modalController: ModalController) {
-   // this.numHomeOwner = 4;
-    this.dbHomeOwner.get().then((res)=>{
+navigation: string = "Dashboard/Home";
+dbListHome = firebase.firestore();
+homeOwnerLi = [];
+buildaLi = [];
+
+  constructor(private router: Router, public loadingController: LoadingController) {
+        this.dbHomeOwner.get().then((res) => {
      this.numHomeOwner = res.size;
     })
 
-    this.dbBuilder.get().then((res)=>{
+    this.dbBuilder.get().then((res) => {
       this.numBuilder = res.size;
      })
-}
-async presentModal() {
-  const modal = await this.modalController.create({
-    component: AccountSetupPage,
-  });
-  return await modal.present();
-}
-profile(){
-  this.presentModal();
-}
+  }
+  ngOnInit() {
+    this.getBuilder();
+  }
+  
+//   constructor(private router: Router, public loadingController: LoadingController) {
+//    // this.numHomeOwner = 4;
+//     this.dbHomeOwner.get().then((res)=>{
+//      this.numHomeOwner = res.size;
+//     })
+
+//     this.dbBuilder.get().then((res)=>{
+//       this.numBuilder = res.size;
+//      })
+// }
 homeOwnerList(){
   this.router.navigateByUrl('messages');
 }
+getBuilder() {
+  this.dbHomeOwner.get().then((snapshot) => {
+   if (snapshot.empty !== true) {
+     snapshot.forEach((doc) => {
+       this.homeOwnerLi.push(doc.data());
+     });
+    // this.homeOwnerList = this.homeOwnerList[0];
+     console.log(this.homeOwnerLi);
+    // this.overallusers = this.users.length;
+   }
+  });
+}
+getBuilda() {
+  this.dbBuilder.get().then((snapshot) => {
+   if (snapshot.empty !== true) {
+     snapshot.forEach((doc) => {
+       this.buildaLi.push(doc.data());
+     });
+    // this.homeOwnerList = this.homeOwnerList[0];
+     console.log(this.buildaLi);
+    // this.overallusers = this.users.length;
+   }
+  });
+}
    homeFunc() {
+    this.navigation = "Dashboard/Home";
     this.home = 'home-active';
-    this.messages = 'disappear';
-    this.homeOwnersProfiles = 'disappear';
-    this.buildersProfiles = 'disappear';
-    this.homeOwnersrequests = 'disappear';
-    this. buildersQuotations = 'disappear';
+    this.messages = 'messages-inactive';
+    this.homeOwnerProfiles = 'homeOwnerProfiles-inactive';
+    this.builderProfiles = 'builderProfiles-inactive';
+   /*  this.homeOwnersrequests = 'disappear';
+    this. buildersQuotations = 'disappear';  */
   } 
   messagesFunc() {
+    this.navigation = "Dashboard/Messages";
     this.home = 'home-inactive';
-    this.messages = 'appear';
-    this.homeOwnersProfiles = 'disappear';
-    this.buildersProfiles = 'disappear';
-    this.homeOwnersrequests = 'disappear';
-    this. buildersQuotations = 'disappear';
+    this.messages = 'messages-active';
+     this.homeOwnerProfiles = 'homeOwnerProfiles-inactive';
+    this.builderProfiles = 'builderProfiles-inactive';
+    /* this.homeOwnersrequests = 'disappear';
+    this. buildersQuotations = 'home-inactive';  */
+  }
+  homeOwnerProfilesFunc() {
+    this.navigation = "Dashboard/HomeOwnersProfiles";
+    this.home = 'home-inactive';
+    this.messages = 'messages-inactive';
+    this.homeOwnerProfiles = 'homeOwnerProfiles-active';
+    this.builderProfiles = 'builderProfiles-inactive';
+  /*   this.homeOwnersrequests = 'home-inactive';
+    this. buildersQuotations = 'home-inactive'; */
   }
   logout(){
     this.presentLoadingWithOptions();
-    firebase.auth().signOut().then(()=>{
+    firebase.auth().signOut().then(() => {
       this.router.navigateByUrl('login');
     })
   }
@@ -82,12 +130,13 @@ homeOwnerList(){
   //   this.homebuilder = false;
   // }
   builderProfilesFunc() {
-    this.home = 'disappear';
-    this.messages = 'disappear';
-    this.homeOwnersProfiles = 'disappear';
-    this.buildersProfiles = 'appear';
-    this.homeOwnersrequests = 'disappear';
-    this. buildersQuotations = 'disappear';
+    this.navigation = "Dashboard/BuildersProfiles";
+    this.home = 'home-inactive';
+    this.messages = 'messages-inactive';
+    this.homeOwnerProfiles = 'homeOwnerProfiles-inactive';
+    this.builderProfiles = 'builderProfiles-active';
+/*     this.homeOwnersrequests = 'disappear';
+    this. buildersQuotations = 'disappear'; */
   }
 
 /*   ownersrequestsFunc() {
@@ -108,9 +157,7 @@ homeOwnerList(){
     this. buildersQuotations = 'disappear';
   } */
 
-  gohome(){
-    this.home1 = !this.home1
-  }
+  
 
 
 }
