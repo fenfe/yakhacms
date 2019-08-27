@@ -3,6 +3,7 @@ import * as firebase from 'firebase';
 import { snapshotToArray } from '../app.firebase.config';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { empty } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,12 +20,12 @@ export class LoginPage implements OnInit {
   }
 
   login(){
- 
     this.presentLoadingWithOptions();
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((res)=>{ 
      // console.log(snapshotToArray(res));
       this.password = '';
       this.email = '';
+   //   this.router.navigateByUrl('')
     }).catch((error)=>{
       this.presentAlert(error.code, error.message);
    //  console.log(error);

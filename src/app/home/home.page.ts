@@ -1,7 +1,8 @@
+import { AccountSetupPage } from './../account-setup/account-setup.page';
 import { Component } from '@angular/core';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { snapshotToArray } from '../app.firebase.config';
 @Component({
   selector: 'app-home',
@@ -11,17 +12,17 @@ import { snapshotToArray } from '../app.firebase.config';
 export class HomePage {
   home1 = true;
   home: string = 'home-active';
-  messages:  string = 'disappear';
+  messages: string = 'disappear';
   homeOwnersProfiles: string = 'disappear';
   buildersProfiles: string = 'disappear';
-  homeOwnersrequests:  string = 'disappear';
-  buildersQuotations :  string = 'disappear';
+  homeOwnersrequests: string = 'disappear';
+  buildersQuotations: string = 'disappear';
   dbHomeOwner = firebase.firestore().collection('HomeOwnerProfile');
   dbBuilder = firebase.firestore().collection('builderProfile');
   numHomeOwner = 0;
   numBuilder = 0;
   
-  constructor(private router: Router, public loadingController: LoadingController) {
+  constructor(private router: Router, public loadingController: LoadingController, public modalController: ModalController) {
    // this.numHomeOwner = 4;
     this.dbHomeOwner.get().then((res)=>{
      this.numHomeOwner = res.size;
@@ -30,6 +31,15 @@ export class HomePage {
     this.dbBuilder.get().then((res)=>{
       this.numBuilder = res.size;
      })
+}
+async presentModal() {
+  const modal = await this.modalController.create({
+    component: AccountSetupPage,
+  });
+  return await modal.present();
+}
+profile(){
+  this.presentModal();
 }
 homeOwnerList(){
   this.router.navigateByUrl('messages');

@@ -9,7 +9,7 @@ import * as firebase from 'firebase';
 export class MessagesPage implements OnInit {
 
   dbListHome = firebase.firestore();
-  homeOwnerList ;
+  homeOwnerList=[];
   constructor() {
     
   }
@@ -23,8 +23,8 @@ export class MessagesPage implements OnInit {
        snapshot.forEach((doc) => {
          this.homeOwnerList.push(doc.data());
        });
-       this.homeOwnerList = this.homeOwnerList[0];
-      // console.log(this.homeOwnerList);
+      // this.homeOwnerList = this.homeOwnerList[0];
+       console.log(this.homeOwnerList);
        
       // this.overallusers = this.users.length;
      }
