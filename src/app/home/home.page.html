@@ -71,9 +71,9 @@
         <div class="icons">
 
           <div class="one">
-            <div class="divide">
+            <div class="divide" (click)="homeOwnerList()">
                 <ion-icon name="people" style="color: gray; font-size: 4vw"></ion-icon>
-                <h3>127</h3>
+                <h3>{{numHomeOwner}}</h3>
             </div>
             <div class="name"><p>Home Owner</p></div>
           </div>
@@ -81,14 +81,14 @@
           <div class="one">
               <div class="divide">
                   <ion-icon name="construct" style="color: gray; font-size: 4vw"></ion-icon>
-                  <h3>183</h3>
+                  <h3>{{numBuilder}}</h3>
               </div>
               <div class="name"><p>Builders</p></div>
           </div>
           <div class="one">
               <div class="divide">
                   <ion-icon name="people" style="color: gray; font-size: 4vw"></ion-icon>
-                  <h3>28</h3>
+                  <h3>0</h3>
               </div>
               <div class="name"><p>Blocked Users</p></div>
           </div>

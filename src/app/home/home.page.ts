@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
+import { snapshotToArray } from '../app.firebase.config';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -15,11 +16,33 @@ export class HomePage {
   homeOwnerProfiles: string = 'homeOwnerProfiles-inactive';
   builderProfiles: string = 'builderProfiles-inactive';
  /*  homeOwnersrequests:  string = 'disappear';
-  buildersQuotations :  string = 'disappear'; */
+  buildersQuotations :  string = 'disappear'; */ // messages:  string = 'disappear';
+  homeOwnersProfiles: string = 'disappear';
+  buildersProfiles: string = 'disappear';
+  homeOwnersrequests:  string = 'disappear';
+  buildersQuotations :  string = 'disappear';
+  dbHomeOwner = firebase.firestore().collection('HomeOwnerProfile');
+  dbBuilder = firebase.firestore().collection('builderProfile');
+  numHomeOwner = 0;
+  numBuilder = 0;
 navigation: string = "Dashboard/Home";
   constructor(private router: Router, public loadingController: LoadingController) {
   }
 
+  
+//   constructor(private router: Router, public loadingController: LoadingController) {
+//    // this.numHomeOwner = 4;
+//     this.dbHomeOwner.get().then((res)=>{
+//      this.numHomeOwner = res.size;
+//     })
+
+//     this.dbBuilder.get().then((res)=>{
+//       this.numBuilder = res.size;
+//      })
+// }
+homeOwnerList(){
+  this.router.navigateByUrl('messages');
+}
    homeFunc() {
     this.navigation = "Dashboard/Home";
     this.home = 'home-active';
