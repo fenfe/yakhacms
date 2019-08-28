@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'account-setup', loadChildren: './account-setup/account-setup.module#AccountSetupPageModule' },
   { path: 'messages', loadChildren: './messages/messages.module#MessagesPageModule' },  { path: 'test', loadChildren: './test/test.module#TestPageModule' },
+  { path: 'view-qoutes-builder', loadChildren: './view-qoutes-builder/view-qoutes-builder.module#ViewQoutesBuilderPageModule' },
 
 ];
 

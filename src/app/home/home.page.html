@@ -172,7 +172,7 @@
                      <div class="textarea">
                       <p> laying out print, designs. T thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum .</p>
                     <div class="delete">
-                                              <button id="delete" ion-button small primary style="width: 90%;letter-spacing: 1px;height: 80%;background: #f15a24;color:white;border-radius: 5px">Delete</button>
+                    <button id="delete" ion-button small primary style="width: 90%;outline-style: none;letter-spacing: 1px;height: 80%;background: #f15a24;color:white;border-radius: 5px">Delete</button>
 
                     </div>
 
@@ -185,8 +185,8 @@
      <p placeholder="Type message here to reply.... "></p>
                
      <div class="btns">
-                 <button ion-button small primary style="width: 45%;letter-spacing:1px;background: #f15a24;color:white;border-radius: 5px">Reply via sms</button>
-                  <button ion-button small primary style="width: 45%;letter-spacing:1px;background: rgb(39, 39, 10);color:white;border-radius: 5px">Reply via email</button>
+                 <button ion-button small primary style="width: 45%;letter-spacing:1px;outline-style: none;background: #f15a24;color:white;border-radius: 5px">Reply via sms</button>
+                  <button ion-button small primary style="width: 45%;outline-style: none;letter-spacing:1px;background: rgb(39, 39, 10);color:white;border-radius: 5px">Reply via email</button>
 
                 </div>
     </div>
@@ -207,15 +207,15 @@
   <div [class]="homeOwnerProfiles">
       <div class="list">
 
-          <div class="card" *ngFor="let b of homeOwnerLi" (click)="selectHome(b)">
+          <div class="card" *ngFor="let b of homeOwnerLi" (click)="selectHome(b)" style="margin-bottom: 2% ">
             <div class="image">
               <div class="imageholder"></div>
             </div>
             <div >
               <div class="info">
-              <H4>{{b.fullname}}</H4>
-              <p>{{b.location}}</p>
-              <p>{{b.price}}</p>
+              <H4><!-- {{b.fullname}} -->hello</H4>
+              <p><!-- {{b.location}} -->hello</p>
+              <p><!-- {{b.price}} -->hello</p>
             </div>
             </div>
             
@@ -247,58 +247,39 @@
              </div><!-- END OF CARD -->
 
           </div>
-          <div class="bottom" *ngFor="let u of userDetails" >
-           
-            
-
-             <div class="bottom2">
-               <div class="textarea">
-                <div class="names2">
-                  <H3>{{u.fullname}}</H3>
-                   <p>{{u.personalNumber}}</p>
-                   <p>{{u.About}}</p> 
-                 </div>
- 
-               <div class="bottom2">
-                 <div class="textarea">
-                                
-                <p></p>
-                       </div>      
-              <div class="btn">
-              <button ion-button   style="width: 45%; background: #ee8a67;height: 55%; border-radius: 5px;letter-spacing: 1px;color:white;font-size:1vw">View Requests</button>
-              <button ion-button style="width: 45%; background: black;height: 55%; border-radius: 5px;letter-spacing: 1px;color:white;font-size: 1vw" >Delete</button>
-              </div>
-            
-                          
-  
-               </div>
-                
- <p></p>
-          
-<div class="btn">
-<p>Delete</p>
-</div>
-</div> 
-           <div class="two">
-
-           </div>
-
-             </div>
-              
-       
          
+<!-- *ngFor="let u of userDetails"  -->
+      <div class="bottom">
        
-        
+          <div class="names2" >
+           <H3> <!-- {{u.fullName}} -->helo</H3>
+            <p><!--  {{u.fullname}} --> hello</p>
+            <p> <!-- {{u.fullname}} -->hello </p> 
+          </div>
+
+           <div class="bottom2">
+             <div class="bio">
+              <p>Lorem ipsum dolor sit amet consectetur
+                 adipisicing elit. Ut incidunt ratione
+                  nemo ipsam, recusandae dignissimos id
+                   exercitationem nostrum voluptatibus
+                    dolores dolorum corporis voluptas odit voluptatem?</p>
+             </div>
+          <div class="btn">
+          <button ion-button   style="width: 45%; background: #ee8a67;outline-style: none;height: 55%; border-radius: 5px;letter-spacing: 1px;color:white;font-size:1vw">View Requests</button>
+          <button ion-button style="width: 45%; background: black;outline-style: none;height: 55%; border-radius: 5px;letter-spacing: 1px;color:white;font-size: 1vw" >Delete</button>
+          </div>
         </div>
+            </div>
         </div>
       </div>
       <!-- home owners lists ends here -->
 
-           <!-- home owners lists starts here -->
+           <!-- builders  lists starts here -->
   <div [class]="builderProfiles">
     <div class="list">
 
-      <div class="card" *ngFor="let b of buildaLi" (click)="selectUser(b)">
+      <div class="card" *ngFor="let b of buildaLi" (click)="selectUser(b)" style="margin-bottom: 2%">
         <div class="image">
           <div class="imageholder"></div>
         </div>
@@ -308,12 +289,13 @@
           <p>082 510 3130</p>
         </div>
       </div>
+     
     </div>
 
     <div class="view">
       <div class="top">
         <!-- new -->
-        <div class="card" >
+        <div class="card"  >
            <div class="border">
              <div class="backg1"></div>
              <div class="backg1b"></div>
@@ -334,35 +316,31 @@
          </div><!-- END OF CARD -->
 
       </div>
-      <div class="bottom" *ngFor="let u of userDetails">
+
+<!-- *ngFor="let u of userDetails"  -->
+      <div class="bottom">
        
-          <div class="names2">
-           <H3>{{u.fullName}}</H3>
-            <p>Kabo@cutemail.com</p>
-            <p>082 510 3130</p> 
+          <div class="names2" >
+           <H3> <!-- {{u.fullName}} --> hello </H3>
+            <p><!--  {{u.fullname}} --> hey</p>
+            <p> <!-- {{u.fullname}} -->yellow </p> 
           </div>
 
            <div class="bottom2">
-             <div class="textarea">
-                            
-            <p>Lorem ipsum, or lipsum as it is  laying 
-              scrambled parts of Cicero's De Finibus Bonorum
-               et Malorum for use in a type specimen book.</p>
-                   </div>      
+             <div class="bio">
+              <p>Lorem ipsum dolor sit amet consectetur
+                 adipisicing elit. Ut incidunt ratione
+                  nemo ipsam, recusandae dignissimos id
+                   exercitationem nostrum voluptatibus
+                    dolores dolorum corporis voluptas odit voluptatem?</p>
+             </div>
           <div class="btn">
-          <button ion-button   style="width: 45%; background: #ee8a67;height: 55%; border-radius: 5px;letter-spacing: 1px;color:white;font-size:1vw">View Requests</button>
-          <button ion-button style="width: 45%; background: black;height: 55%; border-radius: 5px;letter-spacing: 1px;color:white;font-size: 1vw" >Delete</button>
+          <button ion-button (click)="presentModal()"  style="width: 45%;outline-style: none; background: #ee8a67;height: 55%; border-radius: 5px;letter-spacing: 1px;color:white;font-size:1vw">View Requests</button>
+          <button ion-button style="width: 45%; background: black;outline-style:none;height: 55%; border-radius: 5px;letter-spacing: 1px;color:white;font-size: 1vw" >Delete</button>
           </div>
-        
-                      
+        </div>
+            </div>
 
-           </div>
-            
-     
-       
-     
-      
-      </div>
     </div>
  
       </div>
