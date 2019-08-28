@@ -1,3 +1,4 @@
+import { ViewRequestOwnerPage } from './../view-request-owner/view-request-owner.page';
 import { ViewQoutesBuilderPage } from './../view-qoutes-builder/view-qoutes-builder.page';
 import { AccountSetupPage } from './../account-setup/account-setup.page';
 import { Component } from '@angular/core';
@@ -69,6 +70,13 @@ userD;
   async presentModal() {
     const modal = await this.modalController.create({
       component: ViewQoutesBuilderPage
+    });
+    return await modal.present();
+  }
+
+  async presentModal2() {
+    const modal = await this.modalController.create({
+      component: ViewRequestOwnerPage
     });
     return await modal.present();
   }
