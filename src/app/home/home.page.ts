@@ -30,6 +30,9 @@ navigation: string = "Dashboard/Home";
 dbListHome = firebase.firestore();
 homeOwnerLi = [];
 buildaLi = [];
+userDetails = [];
+userD;
+  user: any;
 
   constructor(private router: Router, public loadingController: LoadingController) {
         this.dbHomeOwner.get().then((res) => {
@@ -42,8 +45,11 @@ buildaLi = [];
   }
   ngOnInit() {
     this.getBuilder();
+    this.getBuilda();
   }
-  
+  profile(){
+    
+  } 
 //   constructor(private router: Router, public loadingController: LoadingController) {
 //    // this.numHomeOwner = 4;
 //     this.dbHomeOwner.get().then((res)=>{
@@ -80,6 +86,39 @@ getBuilda() {
     // this.overallusers = this.users.length;
    }
   });
+}
+selectUser(user){
+  this.user = user;
+  this.userDetails = [];
+  this.dbBuilder.where('uid', '==', user.uid).get().then(snapshot => {
+    if (snapshot.empty){
+      console.log('No review');
+     // this.isreviews = false;
+    } else {
+    //  this.isreviews = true;
+      snapshot.forEach(doc => {
+        this.userDetails.push(doc.data());
+        console.log(this.userDetails);
+        
+      })
+    }
+  })
+}
+selectHome(user){
+  this.user = user;
+  this.userDetails = [];
+  this.dbHomeOwner.where('uid', '==', user.uid).get().then(snapshot => {
+    if (snapshot.empty){
+      console.log('No review');
+     // this.isreviews = false;
+    } else {
+    //  this.isreviews = true;
+      snapshot.forEach(doc => {
+        this.userDetails.push(doc.data());
+        console.log(this.userDetails);
+      })
+    }
+  })
 }
    homeFunc() {
     this.navigation = "Dashboard/Home";

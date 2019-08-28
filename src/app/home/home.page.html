@@ -49,13 +49,13 @@
           <div class="box" [class]="" (click)="homeOwnerProfilesFunc()" >
               <div class="box1"><ion-icon name="person" style="color: gray; font-size: 2.2vw"></ion-icon></div>
               <div class="box2"> <p>Home Owners</p></div>
-              <div class="box3"  ><div class="numberholder"><p>24</p></div></div>
+              <div class="box3"  ><div class="numberholder"><p>{{numHomeOwner}}</p></div></div>
           </div>
 
           <div class="box" [class]="" (click)="builderProfilesFunc()">
               <div class="box1" ><ion-icon name="construct" style="color: gray; font-size: 2.2vw"></ion-icon></div>
               <div class="box2"> <p>Builders</p></div>
-              <div class="box3" ><div class="numberholder"><p>24</p></div></div>
+              <div class="box3" ><div class="numberholder"><p>{{numBuilder}}</p></div></div>
           </div>
         </div><!-- end of sidemenu -->
 
@@ -198,15 +198,18 @@
   <div [class]="homeOwnerProfiles">
       <div class="list">
 
-          <div class="card">
+          <div class="card" *ngFor="let b of homeOwnerLi" (click)="selectHome(b)">
             <div class="image">
               <div class="imageholder"></div>
             </div>
-            <div class="info">
-              <H4>Kaboentle Dikutle</H4>
-              <p>kabo@cutemail.com</p>
-              <p>082 510 3130</p>
+            <div >
+              <div class="info">
+              <H4>{{b.fullname}}</H4>
+              <p>{{b.location}}</p>
+              <p>{{b.price}}</p>
             </div>
+            </div>
+            
           </div>
  
         </div>
@@ -232,42 +235,42 @@
                      </div>
                   
                  </div>
-                 <div class="image" >
-                     <img src="../../assets/idris.jpg" alt="" class="src" width="100%" height=100%>
+                 <div class="image" *ngFor="let u of userDetails">
+                     <img src="{{u.ownerImage}}" alt="" class="src" width="100%" height=100%>
                  </div>
                <div class="border2"></div>
                </div>
                
              </div><!-- END OF CARD -->
           </div>
-          <div class="bottom">
+          <div class="bottom" *ngFor="let u of userDetails" >
            
-              <div class="names2">
-               <H3>Kaboentle Mabiletsa</H3>
-                <p>Kabo@cutemail.com</p>
-                <p>082 510 3130</p> 
-              </div>
- 
-               <div class="bottom2">
-                 <div class="textarea">
-                  
-   <p>Lorem ipsum, or lipsum as it is  laying out print, designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
-            
- <div class="btn">
- <p>Delete</p>
- </div>
- </div> 
-             <div class="two">
- 
-             </div>
-  
-               </div>
+            <div class="names2">
+             <H3>{{u.fullname}}</H3>
+              <p>{{u.personalNumber}}</p>
+              <p>{{u.About}}</p> 
+            </div>
+
+             <div class="bottom2">
+               <div class="textarea">
                 
-         
-           
-         
+ <p>Lorem ipsum, or lipsum as it is  laying out print, designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
           
-          </div>
+<div class="btn">
+<p>Delete</p>
+</div>
+</div> 
+           <div class="two">
+
+           </div>
+
+             </div>
+              
+       
+         
+       
+        
+        </div>
         </div>
       </div>
       <!-- home owners lists ends here -->
@@ -275,13 +278,13 @@
            <!-- home owners lists starts here -->
   <div [class]="builderProfiles">
       <div class="list">
-
-          <div class="card">
+      
+          <div class="card" *ngFor="let b of buildaLi" (click)="selectUser(b)">
             <div class="image">
               <div class="imageholder"></div>
             </div>
             <div class="info">
-              <H4>Kaboentle Dikutle</H4>
+              <H4>{{b.fullName}}</H4>
               <p>kabo@cutemail.com</p>
               <p>082 510 3130</p>
             </div>
@@ -310,20 +313,20 @@
                      </div>
                   
                  </div>
-                 <div class="image" >
-                     <img src="../../assets/idris.jpg" alt="" class="src" width="100%" height=100%>
+                 <div class="image" *ngFor="let u of userDetails">
+                     <img src="{{u.bricklayerImage}}" alt="" class="src" width="100%" height=100%>
                  </div>
                <div class="border2"></div>
                </div>
                
              </div><!-- END OF CARD -->
           </div>
-          <div class="bottom">
+          <div class="bottom" *ngFor="let u of userDetails" >
            
               <div class="names2">
-               <H3>Kaboentle Mabiletsa</H3>
-                <p>Kabo@cutemail.com</p>
-                <p>082 510 3130</p> 
+               <H3>{{u.fullName}}</H3>
+                <p>Certified = {{u.certified}}</p>
+                <p>Expirience of {{u.experiences}}</p> 
               </div>
  
                <div class="bottom2">

@@ -8,26 +8,25 @@ import * as firebase from 'firebase';
 })
 export class MessagesPage implements OnInit {
 
-  dbListHome = firebase.firestore();
-  homeOwnerList=[];
+
   constructor() {
     
   }
 
   ngOnInit() {
-    this.getBuilder();
+  //  this.getBuilder();
   }
   getBuilder() {
-    this.dbListHome.collection('HomeOwnerProfile').get().then((snapshot) => {
-     if (snapshot.empty !== true) {
-       snapshot.forEach((doc) => {
-         this.homeOwnerList.push(doc.data());
-       });
-      // this.homeOwnerList = this.homeOwnerList[0];
-       console.log(this.homeOwnerList);
+    // this.dbListHome.collection('HomeOwnerProfile').get().then((snapshot) => {
+    //  if (snapshot.empty !== true) {
+    //    snapshot.forEach((doc) => {
+    //      this.homeOwnerList.push(doc.data());
+    //    });
+    //   // this.homeOwnerList = this.homeOwnerList[0];
+    //    console.log(this.homeOwnerList);
        
-      // this.overallusers = this.users.length;
-     }
-    });
+    //   // this.overallusers = this.users.length;
+    //  }
+    // });
   }
 }

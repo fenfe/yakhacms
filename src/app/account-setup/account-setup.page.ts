@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as firebase from 'firebase';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account-setup',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountSetupPage implements OnInit {
 
-  constructor() { }
+  fullname;
+  cellno;
+  bio;
+  constructor(public router: Router) { }
 
   ngOnInit() {
   }
-
+  createAccount(){
+    firebase.firestore().collection('admin').add({
+      name: this.fullname,
+      cellno: this.cellno,
+      bio: this.bio,
+      uid: firebase.auth().currentUser.uid
+    })
+   // this.router.navigateByUrl('home');
+  }
 }

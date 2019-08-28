@@ -4,6 +4,7 @@ import { snapshotToArray } from '../app.firebase.config';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { empty } from 'rxjs';
 import { Router } from '@angular/router';
+import { userInfo } from 'os';
 
 @Component({
   selector: 'app-login',
@@ -14,22 +15,35 @@ export class LoginPage implements OnInit {
 
   email;
   password;
-  constructor(public loadingController: LoadingController, public alertController: AlertController) { }
+  dbAdmin = firebase.firestore().collection('admin');
+  constructor(public loadingController: LoadingController, public alertController: AlertController, public router: Router) { }
 
   ngOnInit() {
+
   }
 
   login(){
     this.presentLoadingWithOptions();
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((res)=>{ 
-     // console.log(snapshotToArray(res));
-      this.password = '';
-      this.email = '';
+      // if() {
+      //   this.router.navigateByUrl('home');
+      // } else {
+      //   this.router.navigateByUrl('account-setup')
+      // }
+      console.log(res.user.uid);
+      
    //   this.router.navigateByUrl('')
     }).catch((error)=>{
       this.presentAlert(error.code, error.message);
    //  console.log(error);
      
+    })
+  }
+  checking(){
+    firebase.firestore().collection('user').get().then((user)=>{
+      if(user){
+        
+      }
     })
   }
   async presentLoadingWithOptions() {
