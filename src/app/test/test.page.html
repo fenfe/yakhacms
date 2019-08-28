@@ -1,0 +1,82 @@
+
+
+<ion-content>
+<div class="container">
+    <div class="image-svg"></div>
+    <div class="login">
+      
+      <div class="logo">
+       
+       <img id="image" src="../../assets/log.png"  alt=""> 
+      </div>
+      
+        <div class="sli">
+            <ion-slides>
+              <ion-slide >
+                <div style="display: block;">
+                    <ion-item>
+                        <ion-label  position="floating" style="letter-spacing: 0.7px;font-size:0.9vw; font-family:'Segoe UI';font-weight: 400">Email address</ion-label>
+                        <ion-icon class="icon" name="mail" slot="end" ></ion-icon>
+                        <ion-input type="email" [(ngModel)]="email"></ion-input>
+                        
+                      </ion-item>
+                      <ion-item>
+                          <ion-label position="floating" style="letter-spacing: 0.7px;font-size:0.9vw; font-family:'Segoe UI';font-weight: 400">Password</ion-label>
+                          
+                          <ion-input type="Password" [(ngModel)]="password" ></ion-input>
+                          <ion-icon class="icon" name="eye" slot="end"></ion-icon>
+                        </ion-item>
+                        <button id="password" ion-button clear small half style="background: none;padding-top: 10%;font-size: 0.7vw;letter-spacing: 0.6px; font-family: 'Segoe UI';font-weight:600;">Forgot password?</button>
+                        <div class="btn">
+                            <button ion-button style="background: #f38d69;font-size: 1vw;border-radius: 5px;width: 100%;height: 4.3vh;letter-spacing: 1px;color:white"   >Login</button>
+<!--                             <button ion-button style="background: #f38d69;font-size: 1vw;border-radius: 5px;width: 100%;height: 70%;letter-spacing: 1px;color:white" (click)="login()">Login</button>
+ -->                          </div>
+                </div>
+                  
+              </ion-slide>
+
+              <ion-slide>
+             <!-- slide two --> 
+             <div style="display: block;">
+              <div class="imageholder" style="height:10vh">
+                <img src="../../assets/idris.jpg">
+              </div>
+              <ion-icon name="camera" id="camera" slot="end" style="color:#f38d69; font-size: 1.5vw"></ion-icon>
+            
+        
+                <ion-item >
+                    <ion-label  position="floating" style="letter-spacing: 0.7px;font-size:0.9vw; font-family:'Segoe UI';font-weight: 400">Username</ion-label>
+                    <ion-icon class="icon" name="person" slot="end"></ion-icon>
+                    <ion-input type="text"></ion-input>
+                  </ion-item>
+      
+                  <ion-item>
+                      <ion-label position="floating" style="letter-spacing: 0.7px;font-size:0.9vw; font-family:'Segoe UI';font-weight: 400">Phone number</ion-label>
+                      
+                      <ion-input type="" style="border-bottom: 1px solid white"></ion-input>
+                      <ion-icon class="icon" name="call" slot="end"></ion-icon>
+                    </ion-item>
+      
+                    <ion-item>
+                      <ion-label  position="floating" style="letter-spacing: 0.7px;font-size:0.9vw; font-family:'Segoe UI';font-weight: 400">Bio</ion-label>
+                      <ion-icon class="icon" name="create" slot="end"></ion-icon>
+                      <ion-textarea type="text" rows="3"></ion-textarea>
+                    </ion-item>
+      
+      <!--               <button ion-button clear small half style="background: none;font-size: 0.7vw;letter-spacing: 0.6px; font-family: 'Segoe UI';">Submit</button>
+       -->              <div class="btn">
+        <button ion-button style="background: #f38d69;font-size: 1vw;border-radius: 5px;width: 100%;height: 4.3vh;letter-spacing: 1px;color:white"   >Submit</button>
+      </div>
+             </div>
+          
+                
+              </ion-slide>
+            </ion-slides>
+        
+        </div>
+        
+              
+    
+    </div>
+</div>
+</ion-content>

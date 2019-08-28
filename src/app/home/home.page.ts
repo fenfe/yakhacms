@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { snapshotToArray } from '../app.firebase.config';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -39,13 +40,23 @@ userD;
   uidProf;
   qouteDet = [];
   constructor(private router: Router, public loadingController: LoadingController) {
+ 
+    this.dbAdmin.where('uid','==',firebase.auth().currentUser.uid).get().then((res)=>{
+      if(res.size>0){
+        res.forEach((doc)=>{
+          console.log(doc.data());
+        })
+      }  else {
+          this.router.navigateByUrl('account-setup') ;
+      }
+    })
     this.dbBuilder.get().then((res) => {
       this.numBuilder = res.size;
      })
      this.dbHomeOwner.get().then((res)=>{
        this.numHomeOwner = res.size;
      })
-    // 
+
   }
   ngOnInit() {
     this.getProfile();
