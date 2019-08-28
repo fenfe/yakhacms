@@ -15,6 +15,7 @@ export class AccountSetupPage implements OnInit {
   constructor(public router: Router) { }
 
   ngOnInit() {
+    this.createAccount();
   }
   createAccount(){
     firebase.firestore().collection('admin').add({

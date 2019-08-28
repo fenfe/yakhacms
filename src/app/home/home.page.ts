@@ -24,6 +24,7 @@ export class HomePage {
   buildersQuotations: string = 'disappear';
   dbHomeOwner = firebase.firestore().collection('HomeOwnerProfile');
   dbBuilder = firebase.firestore().collection('builderProfile');
+  dbQuotes = firebase.firestore().collection('HomeOwnerQuotation');
   dbAdmin = firebase.firestore().collection('admin');
   numHomeOwner = 0;
   numBuilder = 0;
@@ -34,29 +35,26 @@ buildaLi = [];
 userDetails = [];
 userD;
   user: any;
-
+  adminDetails=[];
+  uidProf;
+  qouteDet = [];
   constructor(private router: Router, public loadingController: LoadingController) {
-    this.dbAdmin.where('uid','==',firebase.auth().currentUser.uid).get().then((res)=>{
-      if(res.size>0){
-        res.forEach((doc)=>{
-          console.log(doc.data());
-        })
-      }  else {
-          this.router.navigateByUrl('account-setup') ;
-      }
-    })
-
     this.dbBuilder.get().then((res) => {
       this.numBuilder = res.size;
      })
+     this.dbHomeOwner.get().then((res)=>{
+       this.numHomeOwner = res.size;
+     })
+    // 
   }
   ngOnInit() {
+    this.getProfile();
     this.getBuilder();
     this.getBuilda();
   }
-  profile(){
+  // profile(){
     
-  } 
+  // } 
 //   constructor(private router: Router, public loadingController: LoadingController) {
 //    // this.numHomeOwner = 4;
 //     this.dbHomeOwner.get().then((res)=>{
@@ -67,10 +65,32 @@ userD;
 //       this.numBuilder = res.size;
 //      })
 // }
+createdQoutes(){
+  this.dbQuotes.where('uid','==',this.uidProf).get().then((q)=>{
+    q.forEach((doc) => {
+      this.qouteDet.push(doc.data());
+      console.log(this.qouteDet); 
+    });
+ })
+}
 homeOwnerList(){
   this.router.navigateByUrl('messages');
 }
+getProfile(){
+  this.dbAdmin.where('uid','==',firebase.auth().currentUser.uid).get().then((res)=>{
+    if(res.size>0){
+      res.forEach((doc)=>{
+        console.log(doc.data());
+        this.adminDetails.push(doc.data()) ;
+        this.uidProf = doc.id;
+      })
+    }  else {
+        this.router.navigateByUrl('account-setup') ;
+    }
+  })
+}
 getBuilder() {
+  //this.createdQoutes();
   this.dbHomeOwner.get().then((snapshot) => {
    if (snapshot.empty !== true) {
      snapshot.forEach((doc) => {

@@ -8,12 +8,12 @@
       <ion-button fill="clear" (click)="logout()">LOGOUT</ion-button>
     </div>
   
-    <div class="header2">
+    <div class="header2" *ngFor="let u of adminDetails">
       <img src="../../assets/icon.png" alt="logo" height="100%">
       <h5>Yakha Dashboard</h5>
       <p>Manage your App here</p>
   
-      <p id="moveright"> Welcome back, Khutty</p>
+      <p id="moveright"> Welcome back, {{u.name}}</p>
       <div class="imageholder">
   <div class="image" (click)="profile()"></div>
       </div>
@@ -336,10 +336,10 @@
          </div><!-- END OF CARD -->
 
       </div>
-      <div class="bottom">
+      <div class="bottom" *ngFor="let u of userDetails">
        
           <div class="names2">
-           <H3>Kaboentle Mabiletsa</H3>
+           <H3>{{u.fullName}}</H3>
             <p>Kabo@cutemail.com</p>
             <p>082 510 3130</p> 
           </div>
