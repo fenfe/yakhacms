@@ -47,7 +47,7 @@ userD;
           console.log(doc.data());
         })
       }  else {
-          this.router.navigateByUrl('account-setup') ;
+          this.router.navigateByUrl('login') ;
       }
     })
     this.dbBuilder.get().then((res) => {

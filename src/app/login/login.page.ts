@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
+//@ViewChild('mySlider') slides: Slides
   email;
   password;
   dbAdmin = firebase.firestore().collection('admin');

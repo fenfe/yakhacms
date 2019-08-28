@@ -11,7 +11,7 @@
           </div>
           
             <div class="sli">
-                <ion-slides>
+                <ion-slides #mySlider>
                   <ion-slide >
                     <div style="display: block;">
                         <ion-item>
@@ -28,7 +28,7 @@
                             </ion-item>
                             <button id="password" ion-button clear small half style="background: none;padding-top: 10%;outline-style: none;font-size: 0.7vw;letter-spacing: 0.6px; font-family: 'Segoe UI';font-weight:600;">Forgot password?</button>
                             <div class="btn">
-                                <button ion-button style="background: #f38d69;font-size: 1vw;border-radius: 5px;width: 100%;height: 4.3vh;letter-spacing: 1px;color:white"   >Login</button>
+                                <button ion-button style="background: #f38d69;font-size: 1vw;border-radius: 5px;width: 100%;height: 4.3vh;letter-spacing: 1px;color:white;outline:none" (click)="login()">Login</button>
     <!--                             <button ion-button style="background: #f38d69;font-size: 1vw;border-radius: 5px;width: 100%;height: 70%;letter-spacing: 1px;color:white" (click)="login()">Login</button>
      -->                          </div>
                     </div>
@@ -65,7 +65,7 @@
           
           <!--               <button ion-button clear small half style="background: none;font-size: 0.7vw;letter-spacing: 0.6px; font-family: 'Segoe UI';">Submit</button>
            -->              <div class="btn">
-            <button ion-button style="background: #f38d69;font-size: 1vw;border-radius: 5px;width: 100%;height: 4.3vh;letter-spacing: 1px;color:white"   >Submit</button>
+            <button ion-button style="background: #f38d69;font-size: 1vw;border-radius: 5px;width: 100%;height: 4.3vh;letter-spacing: 1px;color:white;outline: none"   >Submit</button>
           </div>
                  </div>
               
