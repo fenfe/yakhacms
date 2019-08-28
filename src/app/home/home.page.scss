@@ -20,7 +20,7 @@ ion-content {
         width: 100%;
         height: 100%;
       
-       // overflow: hidden;
+        overflow: hidden;
         .header1 {
             height: 5vh;
             background: #f15a24;
@@ -584,28 +584,29 @@ ion-content {
 
                 .messages-active {
                     width: 100%;
-                    height: 99%;
-                   // border: 1px solid green;
+                    height: 94%;
+                 //   border: 1px solid green;
                     display: flex;
 
 
                     .list {
-                       //  border: 1px solid red;
-                        width: 62%;
-
+                        // border: 1px solid rgb(12, 11, 11);
+                        width: 52%;
+                        height: 95%;
+                        overflow-y: scroll;
                         .card {
                             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
                             width: 96%;
                             height: 15%;
                             position: relative;
-                           
-                            top: 2%;
+                          // border: 1px solid red;
+                        
                             border-radius: 5px;
                             display: flex;
                             background: white;
 
                             .image {
-                              //  border-right: 1px solid #f15a24;
+                               // border-right: 1px solid #f15a24;
                                 width: 20%;
                                 height: 100%;
                                 display: flex;
@@ -644,11 +645,11 @@ ion-content {
                     }
 
                     .view {
-                        // border: 1px solid green;
+                       //  border: 1px solid green;
                         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
                         background: white;
                         border-radius: 5px;
-                        width: 38%;
+                        width: 48%;
                         height: 95%;
                         margin-left: auto;
                         position: relative;
@@ -660,11 +661,11 @@ ion-content {
                            
 
                             .card {
-                                width: 100%;
+                                width: 80%;
                                 height: 100%;
                                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
-
+                              position: relative;
+                                left: 10%;
                                 .border {
 
                                     width: 90%;
@@ -747,12 +748,12 @@ ion-content {
                         }
 
                         .bottom {
-                            border: 1px solid rgb(81, 255, 0);
+                          //  border: 1px solid rgb(81, 255, 0);
                             height: 50%;
 
                             
                             .names2 {
-                                border: 1px solid rgb(0, 0, 0);
+                              //  border: 1px solid rgb(0, 0, 0);
                                 height: 30%;
 
 
@@ -769,7 +770,7 @@ ion-content {
                             }
 
                                 .textarea {
-                                    border: 1px solid green;
+                                    //border: 1px solid green;
                                     height: 40%;
                                     width: 45%;
 
@@ -780,36 +781,54 @@ ion-content {
                                         font-family: 'Segoe UI';
                                     }
 
-                                    .btn {
-                                        background: red;
-                                        width: 80%;
-                                        height: 15%;
-                                      position: relative;
-                                      left: 10%;
-                                      top: 5%;
-                                      text-align: center;
-                                        border-radius: 5px;
-                                    }
+                            
                                 }
                             
 
                             .bottom2 {
-                                border: 1px solid blue;
+                               // border: 1px solid blue;
                                 height: 69%;
                                 display: flex;
                                 justify-content: space-around;
 
                                 .textarea,
                                 .two {
-                                    border: 1px solid green;
+                                   // border: 1px solid green;
                                     height: 95%;
                                     width: 45%;
+
                                     p {
                                         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+                                       padding: 3%;
+                                      
                                         height: 80%;
                                         overflow-y: scroll;
-                                    }
+                                         }
+                                       .delete {
+                                         //  border: 1px solid rgb(10, 10, 10);
+                                            
+                                             height: 20%;
+                                           button {
+                                               position: relative;
+                                               left: 5%;
+                                               top: 15%;
+                                           }
+                                           button:hover {
+                                                color: black;
+                                                background: #1A1A1A;
+                                           }
+                                         }
+                                        
+                                        .btns {
+                                            display: flex;
+                                            justify-content: space-between;
+                                          //border: 1px solid red;
+                                            width: 100%;
+                                            height: 15%;
+                                            position: relative; 
+                                            top: 5%;
+                                        }
+                                 
                                 }
                             }
 
@@ -1178,7 +1197,7 @@ ion-content {
                                        bottom: 0%;
 
                                        h5 {
-                                           border: 1px solid red;
+                                        //   border: 1px solid red;
                                            position: absolute;
                                            top: 28%;
                                            left: 0;
@@ -1189,7 +1208,7 @@ ion-content {
                                        }
 
                                        p {
-                                            border: 1px solid green;
+                                            //border: 1px solid green;
                                            position: relative;
                                            top: 57%;
                                            color: white;
@@ -1208,17 +1227,6 @@ ion-content {
                                        top: 0;
                                        right: 0;
 
-                                       .stars {
-                                           display: flex;
-                                           flex-direction: column;
-                                            border: 1px solid goldenrod;
-                                           width: 15%;
-                                           height: 56%;
-                                           position: relative;
-                                           left: 85%;
-                                           top: 5%;
-                                           z-index: -4;
-                                       }
                                    }
 
                                    .image {
@@ -1237,12 +1245,12 @@ ion-content {
                        }
 
                        .bottom {
-                          // border: 1px solid rgb(25, 0, 255);
+                           //border: 1px solid rgb(25, 0, 255);
                            height: 50%;
 
                            
                            .names2 {
-                               border: 1px solid rgb(0, 0, 0);
+                             //  border: 1px solid rgb(0, 0, 0);
                                height: 30%;
 
 
@@ -1258,21 +1266,21 @@ ion-content {
                                }
 
                                .textarea {
-                                   border: 1px solid green;
+                                  // border: 1px solid green;
                                    height: 60%;
 
                                    p {
                                        height: 70%;
-                                       border: 1px solid rgb(243, 28, 243);
+                                     //  border: 1px solid rgb(243, 28, 243);
                                        letter-spacing: 1px;
                                        font-family: 'Segoe UI';
                                    }
 
                                    .btn {
-                                       background: red;
+                                      // background: red;
                                        width: 80%;
                                        height: 20%;
-                                       border: 1px sold rgb(255, 0, 212);
+                                       //border: 1px sold rgb(255, 0, 212);
                                    }
                                }
                            }
@@ -1280,18 +1288,33 @@ ion-content {
                            .bottom2 {
                               // border: 1px solid blue;
                                height: 70%;
-                               display: flex;
-                               justify-content: space-around;
-
-                               .textarea,
-                               .two {
-                                   border: 1px solid green;
-                                   height: 95%;
-                                   width: 45%;
-                               }
+                             
+                            .textarea {
+                               // border: 1px solid red;
+                                height: 70%;
+                                p {
+                                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                                    height: 100%;
+                                    display: grid;
+                                    align-items: center;
+                                    justify-items: center;
+                                    padding-left: 4%;
+                                    padding-right: 4%;
+                                    letter-spacing: 1px;
+                                }
+                            }
+                            .btn {
+                                position: relative;
+                                top: 6%;
+                                display: flex;
+                                justify-content:space-around;
+                              //  border: 1px solid rgb(21, 255, 0);
+                                height: 30%;  
+                            }
+                               
                            }
 
-                       }
+                       }//END OF BOTTOM
                    }
                } 
 
@@ -1562,7 +1585,7 @@ ion-content {
                             background: white;
 
                             .image {
-                                border-right: 1px solid #f15a24;
+                               // border-right: 1px solid #f15a24;
                                 width: 20%;
                                 height: 100%;
                                 display: flex;
@@ -1612,7 +1635,7 @@ ion-content {
 
                       
                         .top {
-                            border: 1px solid red;
+                           // border: 1px solid red;
                             height: 50%;
                            
 
@@ -1656,7 +1679,7 @@ ion-content {
                                         bottom: 0%;
 
                                         h5 {
-                                            border: 1px solid red;
+                                           // border: 1px solid red;
                                             position: absolute;
                                             top: 28%;
                                             left: 0;
@@ -1667,7 +1690,7 @@ ion-content {
                                         }
 
                                         p {
-                                             border: 1px solid green;
+                                            // border: 1px solid green;
                                             position: relative;
                                             top: 57%;
                                             color: white;
@@ -1686,21 +1709,10 @@ ion-content {
                                         top: 0;
                                         right: 0;
 
-                                        .stars {
-                                            display: flex;
-                                            flex-direction: column;
-                                             border: 1px solid goldenrod;
-                                            width: 15%;
-                                            height: 56%;
-                                            position: relative;
-                                            left: 85%;
-                                            top: 5%;
-                                            z-index: -4;
-                                        }
                                     }
 
                                     .image {
-                                         border: 2px solid rgb(255, 60, 0); 
+                                       //  border: 2px solid rgb(255, 60, 0); 
                                         width: 80%;
                                         height: 77%;
                                         position: absolute;
@@ -1715,16 +1727,16 @@ ion-content {
                         }
 
                         .bottom {
-                           // border: 1px solid rgb(25, 0, 255);
+                            //border: 1px solid rgb(25, 0, 255);
                             height: 50%;
-
+ 
                             
                             .names2 {
-                                border: 1px solid rgb(0, 0, 0);
+                              //  border: 1px solid rgb(0, 0, 0);
                                 height: 30%;
-
-
-
+ 
+ 
+ 
                                 h3,
                                 p {
                                     color: gray;
@@ -1734,42 +1746,57 @@ ion-content {
                                     font-size: 1vw;
                                     text-align: center;
                                 }
-
+ 
                                 .textarea {
-                                    border: 1px solid green;
+                                   // border: 1px solid green;
                                     height: 60%;
-
+ 
                                     p {
                                         height: 70%;
-                                        border: 1px solid rgb(243, 28, 243);
+                                      //  border: 1px solid rgb(243, 28, 243);
                                         letter-spacing: 1px;
                                         font-family: 'Segoe UI';
                                     }
-
+ 
                                     .btn {
-                                        background: red;
+                                       // background: red;
                                         width: 80%;
                                         height: 20%;
-                                        border: 1px sold rgb(255, 0, 212);
+                                        //border: 1px sold rgb(255, 0, 212);
                                     }
                                 }
                             }
-
+ 
                             .bottom2 {
                                // border: 1px solid blue;
                                 height: 70%;
-                                display: flex;
-                                justify-content: space-around;
-
-                                .textarea,
-                                .two {
-                                   // border: 1px solid green;
-                                    height: 95%;
-                                    width: 45%;
-                                }
+                              
+                             .textarea {
+                                // border: 1px solid red;
+                                 height: 70%;
+                                 p {
+                                     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                                     height: 100%;
+                                     display: grid;
+                                     align-items: center;
+                                     justify-items: center;
+                                     padding-left: 4%;
+                                     padding-right: 4%;
+                                     letter-spacing: 1px;
+                                 }
+                             }
+                             .btn {
+                                 position: relative;
+                                 top: 6%;
+                                 display: flex;
+                                 justify-content:space-around;
+                               //  border: 1px solid rgb(21, 255, 0);
+                                 height: 30%;  
+                             }
+                                
                             }
-
-                        }
+ 
+                        }//END OF BOTTOM
                     }
                 } 
 

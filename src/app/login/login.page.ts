@@ -4,7 +4,6 @@ import { snapshotToArray } from '../app.firebase.config';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { empty } from 'rxjs';
 import { Router } from '@angular/router';
-import { userInfo } from 'os';
 
 @Component({
   selector: 'app-login',

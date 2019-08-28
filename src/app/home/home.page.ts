@@ -24,6 +24,7 @@ export class HomePage {
   buildersQuotations: string = 'disappear';
   dbHomeOwner = firebase.firestore().collection('HomeOwnerProfile');
   dbBuilder = firebase.firestore().collection('builderProfile');
+  dbAdmin = firebase.firestore().collection('admin');
   numHomeOwner = 0;
   numBuilder = 0;
 navigation: string = "Dashboard/Home";
@@ -35,8 +36,14 @@ userD;
   user: any;
 
   constructor(private router: Router, public loadingController: LoadingController) {
-        this.dbHomeOwner.get().then((res) => {
-     this.numHomeOwner = res.size;
+    this.dbAdmin.where('uid','==',firebase.auth().currentUser.uid).get().then((res)=>{
+      if(res.size>0){
+        res.forEach((doc)=>{
+          console.log(doc.data());
+        })
+      }  else {
+          this.router.navigateByUrl('account-setup') ;
+      }
     })
 
     this.dbBuilder.get().then((res) => {
