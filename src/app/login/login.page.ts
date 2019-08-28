@@ -3,6 +3,7 @@ import * as firebase from 'firebase';
 import { snapshotToArray } from '../app.firebase.config';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { empty } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,8 @@ export class LoginPage implements OnInit {
 
   email;
   password;
-  constructor(public loadingController: LoadingController, public alertController: AlertController) { }
+  constructor(public loadingController: LoadingController, public alertController: AlertController,
+    public router: Router) { }
 
   ngOnInit() {
   }
@@ -22,7 +24,8 @@ export class LoginPage implements OnInit {
  
     this.presentLoadingWithOptions();
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((res)=>{ 
-     // console.log(snapshotToArray(res));
+       // this.router.navigateByUrl('home');
+     // console.log(res);
       this.password = '';
       this.email = '';
     }).catch((error)=>{
