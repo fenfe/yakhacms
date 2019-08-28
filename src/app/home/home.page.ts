@@ -1,7 +1,8 @@
+import { AccountSetupPage } from './../account-setup/account-setup.page';
 import { Component } from '@angular/core';
 import * as firebase from 'firebase';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { snapshotToArray } from '../app.firebase.config';
 @Component({
   selector: 'app-home',
@@ -19,17 +20,43 @@ export class HomePage {
   buildersQuotations :  string = 'disappear'; */ // messages:  string = 'disappear';
   homeOwnersProfiles: string = 'disappear';
   buildersProfiles: string = 'disappear';
-  homeOwnersrequests:  string = 'disappear';
-  buildersQuotations :  string = 'disappear';
+  homeOwnersrequests: string = 'disappear';
+  buildersQuotations: string = 'disappear';
   dbHomeOwner = firebase.firestore().collection('HomeOwnerProfile');
   dbBuilder = firebase.firestore().collection('builderProfile');
+  dbAdmin = firebase.firestore().collection('admin');
   numHomeOwner = 0;
   numBuilder = 0;
 navigation: string = "Dashboard/Home";
-  constructor(private router: Router, public loadingController: LoadingController) {
-  }
+dbListHome = firebase.firestore();
+homeOwnerLi = [];
+buildaLi = [];
+userDetails = [];
+userD;
+  user: any;
 
-  
+  constructor(private router: Router, public loadingController: LoadingController) {
+    this.dbAdmin.where('uid','==',firebase.auth().currentUser.uid).get().then((res)=>{
+      if(res.size>0){
+        res.forEach((doc)=>{
+          console.log(doc.data());
+        })
+      }  else {
+          this.router.navigateByUrl('account-setup') ;
+      }
+    })
+
+    this.dbBuilder.get().then((res) => {
+      this.numBuilder = res.size;
+     })
+  }
+  ngOnInit() {
+    this.getBuilder();
+    this.getBuilda();
+  }
+  profile(){
+    
+  } 
 //   constructor(private router: Router, public loadingController: LoadingController) {
 //    // this.numHomeOwner = 4;
 //     this.dbHomeOwner.get().then((res)=>{
@@ -42,6 +69,63 @@ navigation: string = "Dashboard/Home";
 // }
 homeOwnerList(){
   this.router.navigateByUrl('messages');
+}
+getBuilder() {
+  this.dbHomeOwner.get().then((snapshot) => {
+   if (snapshot.empty !== true) {
+     snapshot.forEach((doc) => {
+       this.homeOwnerLi.push(doc.data());
+     });
+    // this.homeOwnerList = this.homeOwnerList[0];
+     console.log(this.homeOwnerLi);
+    // this.overallusers = this.users.length;
+   }
+  });
+}
+getBuilda() {
+  this.dbBuilder.get().then((snapshot) => {
+   if (snapshot.empty !== true) {
+     snapshot.forEach((doc) => {
+       this.buildaLi.push(doc.data());
+     });
+    // this.homeOwnerList = this.homeOwnerList[0];
+     console.log(this.buildaLi);
+    // this.overallusers = this.users.length;
+   }
+  });
+}
+selectUser(user){
+  this.user = user;
+  this.userDetails = [];
+  this.dbBuilder.where('uid', '==', user.uid).get().then(snapshot => {
+    if (snapshot.empty){
+      console.log('No review');
+     // this.isreviews = false;
+    } else {
+    //  this.isreviews = true;
+      snapshot.forEach(doc => {
+        this.userDetails.push(doc.data());
+        console.log(this.userDetails);
+        
+      })
+    }
+  })
+}
+selectHome(user){
+  this.user = user;
+  this.userDetails = [];
+  this.dbHomeOwner.where('uid', '==', user.uid).get().then(snapshot => {
+    if (snapshot.empty){
+      console.log('No review');
+     // this.isreviews = false;
+    } else {
+    //  this.isreviews = true;
+      snapshot.forEach(doc => {
+        this.userDetails.push(doc.data());
+        console.log(this.userDetails);
+      })
+    }
+  })
 }
    homeFunc() {
     this.navigation = "Dashboard/Home";
@@ -72,7 +156,7 @@ homeOwnerList(){
   }
   logout(){
     this.presentLoadingWithOptions();
-    firebase.auth().signOut().then(()=>{
+    firebase.auth().signOut().then(() => {
       this.router.navigateByUrl('login');
     })
   }

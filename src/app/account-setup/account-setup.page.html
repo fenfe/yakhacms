@@ -9,32 +9,30 @@
         <div class="imageholder"></div>
         <ion-icon name="camera" slot="end" style="color: white; font-size: 1.5vw"></ion-icon>
       </div>
-      <form class="forms">
+     
           <ion-item style="background:transparent">
               <ion-label  position="floating" style="letter-spacing: 0.7px;font-size:1vw; font-family:'Segoe UI';font-weight: 400">Username</ion-label>
               <ion-icon name="person" slot="end"></ion-icon>
-              <ion-input type="text"></ion-input>
+              <ion-input type="text" [(ngModel)]="fullname"></ion-input>
             </ion-item>
 
             <ion-item>
                 <ion-label position="floating" style="letter-spacing: 0.7px;font-size:1vw; font-family:'Segoe UI';font-weight: 400">Phone number</ion-label>
                 
-                <ion-input type="number" style="border-bottom: 1px solid white"></ion-input>
+                <ion-input type="number" [(ngModel)]="cellno" style="border-bottom: 1px solid white"></ion-input>
                 <ion-icon name="call" slot="end"></ion-icon>
               </ion-item>
 
               <ion-item>
                 <ion-label  position="floating" style="letter-spacing: 0.7px;font-size:1vw; font-family:'Segoe UI';font-weight: 400">Bio</ion-label>
                 <ion-icon name="create" slot="end"></ion-icon>
-                <ion-textarea type="text" rows="3"></ion-textarea>
+                <ion-textarea type="text" rows="3" [(ngModel)]="bio"></ion-textarea>
               </ion-item>
 
 <!--               <button ion-button clear small half style="background: none;font-size: 0.7vw;letter-spacing: 0.6px; font-family: 'Segoe UI';">Submit</button>
  -->              <div class="btn">
-                <button ion-button full  class="btn-success">Submit</button>
+                <ion-button full  class="btn-success" (click)="createAccount()">Submit</ion-button>
               </div>
-              
-      </form>
     </div>
   </div>
 ​
