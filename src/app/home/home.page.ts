@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { snapshotToArray } from '../app.firebase.config';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -36,6 +37,7 @@ userD;
   user: any;
 
   constructor(private router: Router, public loadingController: LoadingController) {
+ 
     this.dbAdmin.where('uid','==',firebase.auth().currentUser.uid).get().then((res)=>{
       if(res.size>0){
         res.forEach((doc)=>{
