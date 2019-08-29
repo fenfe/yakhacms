@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as firebase from 'firebase';
 import { snapshotToArray } from '../app.firebase.config';
 import { LoadingController, AlertController } from '@ionic/angular';
@@ -12,15 +12,37 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
+//  @ViewChild('')
+//@ViewChild('myslider') slides: Slides;
+slideOpts = {
+  initialSlide: 1,
+  speed: 400
+};
+fullname;
+cellno;
+bio;
   email;
   password;
   dbAdmin = firebase.firestore().collection('admin');
-  constructor(public loadingController: LoadingController, public alertController: AlertController, public router: Router) { }
+  constructor(public loadingController: LoadingController, public alertController: AlertController, public router: Router) { 
+   }
 
   ngOnInit() {
-
+    //this.getProfile();
   }
-
+  ionViewWillEnter(){
+     this.slideOpts;
+    // this.createAccount();
+  }
+  getProfile(){
+    this.dbAdmin.where('uid','==',firebase.auth().currentUser.uid).get().then((res)=>{
+      if(res.size>0){
+        this.router.navigateByUrl('home');
+      }  else {
+        this.router.navigateByUrl('login');
+      }
+    })
+  }
   login(){
     this.presentLoadingWithOptions();
       firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((res)=>{ 
@@ -64,5 +86,13 @@ export class LoginPage implements OnInit {
 
     await alert.present();
   }
-
+  createAccount(){
+    this.dbAdmin.add({
+      name: this.fullname,
+      cellno: this.cellno,
+      bio: this.bio,
+      uid: firebase.auth().currentUser.uid
+    })
+   // this.router.navigateByUrl('home');
+  }
 }

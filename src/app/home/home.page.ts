@@ -39,6 +39,7 @@ userD;
   adminDetails=[];
   uidProf;
   qouteDet = [];
+  idBuilder;
   constructor(private router: Router, public loadingController: LoadingController) {
  
     this.dbAdmin.where('uid','==',firebase.auth().currentUser.uid).get().then((res)=>{
@@ -47,7 +48,7 @@ userD;
           console.log(doc.data());
         })
       }  else {
-          this.router.navigateByUrl('account-setup') ;
+          this.router.navigateByUrl('login') ;
       }
     })
     this.dbBuilder.get().then((res) => {
@@ -96,7 +97,7 @@ getProfile(){
         this.uidProf = doc.id;
       })
     }  else {
-        this.router.navigateByUrl('account-setup') ;
+        this.router.navigateByUrl('login') ;
     }
   })
 }
@@ -106,12 +107,20 @@ getBuilder() {
    if (snapshot.empty !== true) {
      snapshot.forEach((doc) => {
        this.homeOwnerLi.push(doc.data());
+       this.idBuilder = doc.id;
      });
     // this.homeOwnerList = this.homeOwnerList[0];
      console.log(this.homeOwnerLi);
     // this.overallusers = this.users.length;
    }
   });
+}
+delete(value){
+ this.dbAdmin.doc(value).delete().then(function() {
+    console.log("Document successfully deleted!");
+}).catch(function(error) {
+    console.error("Error removing document: ", error);
+});
 }
 getBuilda() {
   this.dbBuilder.get().then((snapshot) => {
