@@ -1,3 +1,5 @@
+import { ViewRequestOwnerPage } from './../view-request-owner/view-request-owner.page';
+import { ViewQoutesBuilderPage } from './../view-qoutes-builder/view-qoutes-builder.page';
 import { AccountSetupPage } from './../account-setup/account-setup.page';
 import { Component } from '@angular/core';
 import * as firebase from 'firebase';
@@ -39,8 +41,7 @@ userD;
   adminDetails=[];
   uidProf;
   qouteDet = [];
-  idBuilder;
-  constructor(private router: Router, public loadingController: LoadingController) {
+  constructor(private router: Router, public loadingController: LoadingController, public modalController: ModalController) {
  
     this.dbAdmin.where('uid','==',firebase.auth().currentUser.uid).get().then((res)=>{
       if(res.size>0){
@@ -63,6 +64,21 @@ userD;
     this.getProfile();
     this.getBuilder();
     this.getBuilda();
+  }
+
+  //modals
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ViewQoutesBuilderPage
+    });
+    return await modal.present();
+  }
+
+  async presentModal2() {
+    const modal = await this.modalController.create({
+      component: ViewRequestOwnerPage
+    });
+    return await modal.present();
   }
   // profile(){
     
