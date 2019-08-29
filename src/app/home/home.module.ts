@@ -20,10 +20,9 @@ import { HomePage } from './home.page';
       }
     ])
   ],
-  declarations: [HomePage, ViewQoutesBuilderPage, ViewRequestOwnerPage],
+  declarations: [HomePage],
   entryComponents: [
-    ViewQoutesBuilderPage,
-    ViewRequestOwnerPage
+
   ]
 })
 export class HomePageModule {}

@@ -29,6 +29,7 @@ export class HomePage {
   dbBuilder = firebase.firestore().collection('builderProfile');
   dbQuotes = firebase.firestore().collection('HomeOwnerQuotation');
   dbAdmin = firebase.firestore().collection('admin');
+  dbPendingUsers = firebase.firestore().collection('incomingUsers');
   numHomeOwner = 0;
   numBuilder = 0;
 navigation: string = "Dashboard/Home";
@@ -41,6 +42,10 @@ userD;
   adminDetails=[];
   uidProf;
   qouteDet = [];
+  idBuilder = [];
+  deleteHowner;
+  deleteBricklayer;
+  incomingUsers = [];
   constructor(private router: Router, public loadingController: LoadingController, public modalController: ModalController) {
  
     this.dbAdmin.where('uid','==',firebase.auth().currentUser.uid).get().then((res)=>{
@@ -64,6 +69,7 @@ userD;
     this.getProfile();
     this.getBuilder();
     this.getBuilda();
+    this.getPendingUsers();
   }
 
   //modals
@@ -123,7 +129,7 @@ getBuilder() {
    if (snapshot.empty !== true) {
      snapshot.forEach((doc) => {
        this.homeOwnerLi.push(doc.data());
-       this.idBuilder = doc.id;
+       this.idBuilder.push(doc.id, doc.data());
      });
     // this.homeOwnerList = this.homeOwnerList[0];
      console.log(this.homeOwnerLi);
@@ -131,12 +137,37 @@ getBuilder() {
    }
   });
 }
+getPendingUsers() {
+  //this.createdQoutes();
+  this.dbPendingUsers.get().then((snapshot) => {
+   if (snapshot.empty !== true) {
+     snapshot.forEach((doc) => {
+       this.incomingUsers.push(doc.data());
+      // this.idBuilder.push(doc.id, doc.data());
+     });
+    // this.homeOwnerList = this.homeOwnerList[0];
+     console.log(this.incomingUsers);
+    // this.overallusers = this.users.length;
+   }
+  });
+}
 delete(value){
- this.dbAdmin.doc(value).delete().then(function() {
+  this.dbHomeOwner.doc(this.deleteHowner).delete().then((res)=> {
     console.log("Document successfully deleted!");
+    this.homeOwnerLi = [];
 }).catch(function(error) {
     console.error("Error removing document: ", error);
 });
+  //console.log('Info '+ )
+}
+deleteBuilder(value){
+  this.dbBuilder.doc(this.deleteBricklayer).delete().then((res)=> {
+    console.log("Document successfully deleted!");
+    this.buildaLi = [];
+}).catch(function(error) {
+    console.error("Error removing document: ", error);
+});
+  //console.log('Info '+ )
 }
 getBuilda() {
   this.dbBuilder.get().then((snapshot) => {
@@ -161,8 +192,8 @@ selectUser(user){
     //  this.isreviews = true;
       snapshot.forEach(doc => {
         this.userDetails.push(doc.data());
-        console.log(this.userDetails);
-        
+         //console.log(doc.id,this.userDetails);
+        this.deleteBricklayer = doc.id;
       })
     }
   })
@@ -179,6 +210,7 @@ selectHome(user){
       snapshot.forEach(doc => {
         this.userDetails.push(doc.data());
         console.log(this.userDetails);
+        this.deleteHowner = doc.id ;
       })
     }
   })

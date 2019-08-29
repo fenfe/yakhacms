@@ -1,4 +1,5 @@
-import { AccountSetupPageModule } from './account-setup/account-setup.module';
+import { ViewRequestOwnerPageModule } from './view-request-owner/view-request-owner.module';
+import { ViewQoutesBuilderPageModule } from './view-qoutes-builder/view-qoutes-builder.module';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,9 +16,9 @@ import { AccountSetupPage } from './account-setup/account-setup.page';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [
+    
   ],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
-    AccountSetupPageModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
     StatusBar,
     SplashScreen,
