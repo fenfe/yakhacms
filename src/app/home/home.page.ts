@@ -139,7 +139,7 @@ getBuilder() {
 }
 getPendingUsers() {
   //this.createdQoutes();
-  this.dbPendingUsers.get().then((snapshot) => {
+  this.dbHomeOwner.where('status','==',false).get().then((snapshot) => {
    if (snapshot.empty !== true) {
      snapshot.forEach((doc) => {
        this.incomingUsers.push(doc.data());
