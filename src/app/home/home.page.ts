@@ -29,7 +29,7 @@ export class HomePage {
   dbBuilder = firebase.firestore().collection('builderProfile');
   dbQuotes = firebase.firestore().collection('HomeOwnerQuotation');
   dbAdmin = firebase.firestore().collection('admin');
-  dbPendingUsers = firebase.firestore().collection('incomingUsers');
+  dbPendingUsers = firebase.firestore().collection('User');
   numHomeOwner = 0;
   numBuilder = 0;
 navigation: string = "Dashboard/Home";
@@ -139,11 +139,12 @@ getBuilder() {
 }
 getPendingUsers() {
   //this.createdQoutes();
-  this.dbHomeOwner.where('status','==',false).get().then((snapshot) => {
+  this.dbPendingUsers.where('status','==',false).get().then((snapshot) => {
    if (snapshot.empty !== true) {
      snapshot.forEach((doc) => {
        this.incomingUsers.push(doc.data());
       // this.idBuilder.push(doc.id, doc.data());
+      
      });
     // this.homeOwnerList = this.homeOwnerList[0];
      console.log(this.incomingUsers);
@@ -271,6 +272,12 @@ selectHome(user){
     this.builderProfiles = 'builderProfiles-active';
 /*     this.homeOwnersrequests = 'disappear';
     this. buildersQuotations = 'disappear'; */
+  }
+  acceptUser(){
+    
+  }
+  decline(){
+
   }
 
 /*   ownersrequestsFunc() {

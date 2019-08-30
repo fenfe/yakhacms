@@ -13,25 +13,36 @@
             <div class="sli">
                 <ion-slides [options]="slideOpts">
                   <ion-slide >
-                    <div style="display: block;">
-                        <ion-item>
-                            <ion-label  position="floating" style="letter-spacing: 0.7px;font-size:0.9vw; font-family:'Segoe UI';font-weight: 400">Email address</ion-label>
-                            <ion-icon class="icon" name="mail" slot="end" ></ion-icon>
-                            <ion-input type="email" [(ngModel)]="email"></ion-input>
-                            
-                          </ion-item>
-                          <ion-item>
-                              <ion-label position="floating" style="letter-spacing: 0.7px;font-size:0.9vw; font-family:'Segoe UI';font-weight: 400">Password</ion-label>
-                              
-                              <ion-input type="Password" [(ngModel)]="password" ></ion-input>
-                              <ion-icon class="icon" name="eye" slot="end"></ion-icon>
-                            </ion-item>
-                            <button id="password" ion-button clear small half style="background: none;padding-top: 10%;outline-style: none;font-size: 0.7vw;letter-spacing: 0.6px; font-family: 'Segoe UI';font-weight:600;">Forgot password?</button>
-                            <div class="btn">
-                                <button ion-button style="background: #f38d69;font-size: 1vw;border-radius: 5px;width: 100%;height: 4.3vh;letter-spacing: 1px;color:white;outline:none" (click)="login()">Login</button>
-    <!--                             <button ion-button style="background: #f38d69;font-size: 1vw;border-radius: 5px;width: 100%;height: 70%;letter-spacing: 1px;color:white" (click)="login()">Login</button>
-     -->                          </div>
-                    </div>
+                    <form [formGroup]="loginForm" >
+
+            <ion-item style="border: 6px">
+            <ion-label  position="floating">Email</ion-label>
+            <ion-input formControlName="email" [(ngModel)]="email" type="email"  [class.invalid]="!loginForm.controls['email'].valid &&
+            loginForm.controls['email'].touched">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!loginForm.controls['email'].valid &&
+             loginForm.controls['email'].touched">
+            <ion-label style="color: red">Please enter a valid email address.</ion-label>
+          </ion-item>
+      <br>
+          <ion-item style="border: 6px">
+            <ion-label position="floating">Password</ion-label>
+            <ion-input formControlName="password" [(ngModel)]="password" type="password"
+              [class.invalid]="!loginForm.controls['password'].valid&& loginForm.controls['password'].touched">
+            </ion-input>
+          </ion-item>
+          <ion-item class="error-message" *ngIf="!loginForm.controls['password'].valid
+            && loginForm.controls['password'].touched">
+            <ion-label style="color: red">Your password needs more than 6 characters.</ion-label>
+          </ion-item>
+      <br>
+         
+          <div  class="btn" >
+            <ion-button  (click)="login(loginForm)"  [disabled]="!loginForm.valid" primary style="background: #0bacacab; width: 100%" >Login</ion-button>
+        
+        </div>
+        </form>
                       
                   </ion-slide>
     
