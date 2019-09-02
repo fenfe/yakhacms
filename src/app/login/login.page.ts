@@ -13,10 +13,10 @@ export class LoginPage implements OnInit {
 
 //  @ViewChild('')
 //@ViewChild('myslider') slides: Slides;
-slideOpts = {
-  initialSlide: 1,
-  speed: 400
-};
+// slideOpts = {
+//   initialSlide: 1,
+//   speed: 400
+// };
 fullname;
 cellno;
 bio;
@@ -39,7 +39,7 @@ bio;
     //this.getProfile();
   }
   ionViewWillEnter(){
-     this.slideOpts;
+    // this.slideOpts;
     // this.createAccount();
   }
   getProfile(){
@@ -53,15 +53,14 @@ bio;
   }
   login(){
     this.presentLoadingWithOptions();
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((res)=>{ 
-      // if() {
-      //   this.router.navigateByUrl('home');
-      // } else {
-      //   this.router.navigateByUrl('account-setup')
-      // }
-      console.log(res.user.uid);
-      
-   //   this.router.navigateByUrl('')
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((results)=>{ 
+        this.dbAdmin.where('uid','==', results.user.uid).get().then((res)=>{
+          if(res.size<0){
+            this.presentAlert('Admin not found', 'Create accoount');
+          }
+        }).catch((dbError)=>{
+          this.presentAlert(dbError.code, dbError.message);
+        })
     }).catch((error)=>{
       this.presentAlert(error.code, error.message);
    //  console.log(error);
