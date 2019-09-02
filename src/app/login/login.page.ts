@@ -64,7 +64,6 @@ bio;
     }).catch((error)=>{
       this.presentAlert(error.code, error.message);
    //  console.log(error);
-     
     })
   }
   // async loginUser(loginForm: FormGroup): Promise<void> {
@@ -129,6 +128,6 @@ bio;
       bio: this.bio,
       uid: firebase.auth().currentUser.uid
     })
-   // this.router.navigateByUrl('home');
+    this.router.navigateByUrl('home');
   }
 }

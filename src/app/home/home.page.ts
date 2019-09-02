@@ -278,7 +278,7 @@ selectHome(user){
   acceptUser(value){
     if(value.status==false){
       this.dbPendingUsers.doc(this.incomingID).update({
-        status
+        status:true
       })
     console.log('founded something');
     }
