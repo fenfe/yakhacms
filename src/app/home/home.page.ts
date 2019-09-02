@@ -29,7 +29,7 @@ export class HomePage {
   dbBuilder = firebase.firestore().collection('builderProfile');
   dbQuotes = firebase.firestore().collection('HomeOwnerQuotation');
   dbAdmin = firebase.firestore().collection('admin');
-  dbPendingUsers = firebase.firestore().collection('incomingUsers');
+  dbPendingUsers = firebase.firestore().collection('User');
   numHomeOwner = 0;
   numBuilder = 0;
 navigation: string = "Dashboard/Home";
@@ -46,6 +46,7 @@ userD;
   deleteHowner;
   deleteBricklayer;
   incomingUsers = [];
+  incomingID;
   constructor(private router: Router, public loadingController: LoadingController, public modalController: ModalController) {
  
     this.dbAdmin.where('uid','==',firebase.auth().currentUser.uid).get().then((res)=>{
@@ -139,11 +140,13 @@ getBuilder() {
 }
 getPendingUsers() {
   //this.createdQoutes();
-  this.dbHomeOwner.where('status','==',false).get().then((snapshot) => {
+  this.dbPendingUsers.where('status','==',false).get().then((snapshot) => {
    if (snapshot.empty !== true) {
      snapshot.forEach((doc) => {
        this.incomingUsers.push(doc.data());
+       this.incomingID = doc.id;
       // this.idBuilder.push(doc.id, doc.data());
+      
      });
     // this.homeOwnerList = this.homeOwnerList[0];
      console.log(this.incomingUsers);
@@ -271,6 +274,17 @@ selectHome(user){
     this.builderProfiles = 'builderProfiles-active';
 /*     this.homeOwnersrequests = 'disappear';
     this. buildersQuotations = 'disappear'; */
+  }
+  acceptUser(value){
+    if(value.status==false){
+      this.dbPendingUsers.doc(this.incomingID).update({
+        status
+      })
+    console.log('founded something');
+    }
+  }
+  decline(){
+
   }
 
 /*   ownersrequestsFunc() {

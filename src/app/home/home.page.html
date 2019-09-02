@@ -37,14 +37,14 @@
           <div class="box" [class]="" (click)="homeFunc()">
               <div class="box1"><ion-icon name="home" style="color: gray; font-size: 2.2vw;text-align: center;" ></ion-icon></div>
               <div class="box2" id="ptag"> <p>Home</p></div>
-              <div class="box3" > <div class="numberholder"><p>24</p></div></div>
+              <!-- <div class="box3" > <div class="numberholder"><p></p></div></div> -->
            </div>
 
-          <div class="box" [class]="" (click)="messagesFunc()">
+          <!-- <div class="box" [class]="" (click)="messagesFunc()">
             <div class="box1"><ion-icon name="mail" style="color: gray; font-size: 2.2vw;text-align: center;" ></ion-icon></div>
             <div class="box2"> <p>Messages</p></div>
-            <div class="box3" ><div class="numberholder"><p>24</p></div></div>
-         </div>
+            <div class="box3" ><div class="numberholder"><p>0</p></div></div>
+         </div> -->
 
           <div class="box" [class]="" (click)="homeOwnerProfilesFunc()" >
               <div class="box1"><ion-icon name="person" style="color: gray; font-size: 2.2vw"></ion-icon></div>
@@ -101,15 +101,15 @@
 
           <div class="contents">
              <div class="headings" id="heading">
-            <div class="two" style="border-right: 1px solid gray"><h4>Name</h4></div>
             <div class="two" style="border-right: 1px solid gray"><h4>Email</h4></div>
-            <div class="two"><h4>Joined Date</h4></div>
+            <div class="two" style="border-right: 1px solid gray"><h4>Type</h4></div>
+            <div class="two"><h4>Status</h4></div>
           </div>
 
-          <div class="headings">
-            <div class="two"><p>John Wick</p></div>
-            <div class="two"><p>Johnwick@movieshub.com</p></div>
-            <div class="two"><p>19 july 2002</p></div>
+          <div class="headings" *ngFor="let user of incomingUsers">
+            <div class="two"><p>{{user.email}}</p></div>
+            <div class="two"><p>{{user.userType}}</p></div>
+            <div class="two" style="display:flex"><p>{{user.status}}</p> <ion-button (click)="acceptUser(user)">Accept</ion-button><ion-button (click)="decline()">Decline</ion-button></div>
           </div> 
           </div>
          
@@ -262,7 +262,7 @@
               <p>{{u.About}}</p>
              </div>
           <div class="btn">
-          <button ion-button (click)="presentModal2()"  style="width: 45%; background: #ee8a67;outline-style: none;height: 55%; border-radius: 5px;letter-spacing: 1px;color:white;font-size:1vw">View Requests</button>
+          <!-- <button ion-button (click)="presentModal2()"  style="width: 45%; background: #ee8a67;outline-style: none;height: 55%; border-radius: 5px;letter-spacing: 1px;color:white;font-size:1vw">View Requests</button> -->
           <button ion-button style="width: 45%; background: black;outline-style: none;height: 55%; border-radius: 5px;letter-spacing: 1px;color:white;font-size: 1vw" (click)="delete(u)" >Delete</button>
           </div>
         </div>
@@ -331,7 +331,7 @@
                     dolores dolorum corporis voluptas odit voluptatem?</p>
              </div>
           <div class="btn">
-          <button ion-button   style="width: 45%; background: #ee8a67;height: 55%; border-radius: 5px;letter-spacing: 1px;color:white;font-size:1vw">View Requests</button>
+          <!-- <button ion-button   style="width: 45%; background: #ee8a67;height: 55%; border-radius: 5px;letter-spacing: 1px;color:white;font-size:1vw">View Requests</button> -->
           <button ion-button style="width: 45%; background: black;height: 55%; border-radius: 5px;letter-spacing: 1px;color:white;font-size: 1vw" (click)="deleteBuilder(u)">Delete</button>
           </div>
         </div>
