@@ -64,16 +64,13 @@ bio;
         firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((results)=>{ 
             console.log(results);
         }).catch((error)=>{
-          this.presentAlert(error.code, error.message);
-       //  console.log(error);
-        })
-    }).catch((error)=>{
       this.presentAlert(error.code, error.message);
    //  console.log(error);
     })
     console.log('Login button');
-    
   }
+  })
+}
   // async loginUser(loginForm: FormGroup): Promise<void> {
   //   if (!loginForm.valid) {
   //     console.log('Form is not valid yet, current value:', loginForm.value);

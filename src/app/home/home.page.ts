@@ -47,6 +47,8 @@ userD;
   deleteBricklayer;
   incomingUsers = [];
   incomingID;
+  declinedUser = [];
+  countDeclined = 0;
   constructor(private router: Router, public loadingController: LoadingController, public modalController: ModalController) {
  
     this.dbAdmin.where('uid','==',firebase.auth().currentUser.uid).get().then((res)=>{
@@ -140,7 +142,7 @@ getBuilder() {
 }
 getPendingUsers() {
   //this.createdQoutes();
-  this.dbPendingUsers.where('status','==',false).get().then((snapshot) => {
+  this.dbPendingUsers.where('status','==',false).onSnapshot((snapshot) => {
    if (snapshot.empty !== true) {
      snapshot.forEach((doc) => {
        this.incomingUsers.push(doc.data());
@@ -283,10 +285,22 @@ selectHome(user){
     console.log('founded something');
     }
   }
-  decline(){
-
+  decline(value){
+    if(value.status){
+      this.dbPendingUsers.doc(this.incomingID).update({
+        status: "rejected"
+      })
+    console.log('this person is rejected');
+    }
   }
-
+  foundRejected(){
+    this.dbPendingUsers.where('status','==','rejected').onSnapshot((res)=>{
+      this.countDeclined = res.size;
+      res.forEach((doc)=>{
+        this.declinedUser.push(doc);
+      })
+    })
+  }
 /*   ownersrequestsFunc() {
     this.home = 'disappear';
     this.messages = 'disappear';

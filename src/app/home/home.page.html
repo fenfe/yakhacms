@@ -88,7 +88,7 @@
           <div class="one">
               <div class="divide">
                   <ion-icon name="people" style="color: gray; font-size: 4vw"></ion-icon>
-                  <h3>0</h3>
+                  <h3>{{countDeclined}}</h3>
               </div>
               <div class="name"><p>Blocked Users</p></div>
           </div>
@@ -109,7 +109,7 @@
           <div class="headings" *ngFor="let user of incomingUsers">
             <div class="two"><p>{{user.email}}</p></div>
             <div class="two"><p>{{user.userType}}</p></div>
-            <div class="two" style="display:flex"><p>{{user.status}}</p> <ion-button (click)="acceptUser(user)">Accept</ion-button><ion-button (click)="decline()">Decline</ion-button></div>
+            <div class="two" style="display:flex"><p>{{user.status}}</p> <ion-button (click)="acceptUser(user)">Accept</ion-button><ion-button (click)="decline(user)">Decline</ion-button></div>
           </div> 
           </div>
          
