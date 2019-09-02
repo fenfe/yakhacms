@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as firebase from 'firebase';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController, AlertController, IonSlides } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
@@ -13,6 +13,7 @@ export class LoginPage implements OnInit {
 
 //  @ViewChild('')
 //@ViewChild('myslider') slides: Slides;
+@ViewChild('myslider', {static: true}) slides: IonSlides;
 // slideOpts = {
 //   initialSlide: 1,
 //   speed: 400
@@ -53,18 +54,25 @@ bio;
   }
   login(){
     this.presentLoadingWithOptions();
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((results)=>{ 
-        this.dbAdmin.where('uid','==', results.user.uid).get().then((res)=>{
-          if(res.size<0){
-            this.presentAlert('Admin not found', 'Create accoount');
-          }
-        }).catch((dbError)=>{
-          this.presentAlert(dbError.code, dbError.message);
+    let uidUser = firebase.auth().currentUser.uid;
+     this.dbAdmin.where('uid','==', uidUser).get().then((res)=>{
+       if(res.size<=0){
+       this.presentAlert('Admin not found', 'Create account');
+        this.slides.slideNext();
+      // this.router.navigateByUrl('login');
+      } else {
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((results)=>{ 
+            console.log(results);
+        }).catch((error)=>{
+          this.presentAlert(error.code, error.message);
+       //  console.log(error);
         })
     }).catch((error)=>{
       this.presentAlert(error.code, error.message);
    //  console.log(error);
     })
+    console.log('Login button');
+    
   }
   // async loginUser(loginForm: FormGroup): Promise<void> {
   //   if (!loginForm.valid) {
@@ -122,12 +130,13 @@ bio;
     await alert.present();
   }
   createAccount(){
-    this.dbAdmin.add({
+    this.dbAdmin.doc('admin').set({
       name: this.fullname,
       cellno: this.cellno,
       bio: this.bio,
       uid: firebase.auth().currentUser.uid
     })
+    console.log('Clicked');
     this.router.navigateByUrl('home');
   }
 }
