@@ -46,6 +46,7 @@ userD;
   deleteHowner;
   deleteBricklayer;
   incomingUsers = [];
+  incomingID;
   constructor(private router: Router, public loadingController: LoadingController, public modalController: ModalController) {
  
     this.dbAdmin.where('uid','==',firebase.auth().currentUser.uid).get().then((res)=>{
@@ -143,6 +144,7 @@ getPendingUsers() {
    if (snapshot.empty !== true) {
      snapshot.forEach((doc) => {
        this.incomingUsers.push(doc.data());
+       this.incomingID = doc.id;
       // this.idBuilder.push(doc.id, doc.data());
       
      });
@@ -273,8 +275,13 @@ selectHome(user){
 /*     this.homeOwnersrequests = 'disappear';
     this. buildersQuotations = 'disappear'; */
   }
-  acceptUser(){
-    
+  acceptUser(value){
+    if(value.status==false){
+      this.dbPendingUsers.doc(this.incomingID).update({
+        status
+      })
+    console.log('founded something');
+    }
   }
   decline(){
 

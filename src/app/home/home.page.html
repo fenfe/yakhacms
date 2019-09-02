@@ -109,7 +109,7 @@
           <div class="headings" *ngFor="let user of incomingUsers">
             <div class="two"><p>{{user.email}}</p></div>
             <div class="two"><p>{{user.userType}}</p></div>
-            <div class="two" style="display:flex"><p>{{user.status}}</p> <!--<ion-button (click)="acceptUser()">Accept</ion-button><ion-button (click)="decline()">Decline</ion-button> --></div>
+            <div class="two" style="display:flex"><p>{{user.status}}</p> <ion-button (click)="acceptUser(user)">Accept</ion-button><ion-button (click)="decline()">Decline</ion-button></div>
           </div> 
           </div>
          
