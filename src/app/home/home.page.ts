@@ -60,6 +60,13 @@ userD;
           this.router.navigateByUrl('login') ;
       }
     })
+    this.dbPendingUsers.where('status','==','rejected').onSnapshot((res)=>{
+      this.countDeclined = res.size;
+      //console.log(this.countDeclined);
+      res.forEach((doc)=>{
+        this.declinedUser.push(doc);
+      })
+    })
     this.dbBuilder.get().then((res) => {
       this.numBuilder = res.size;
      })
@@ -286,7 +293,7 @@ selectHome(user){
     }
   }
   decline(value){
-    if(value.status){
+    if(value.status==false){
       this.dbPendingUsers.doc(this.incomingID).update({
         status: "rejected"
       })
@@ -294,12 +301,7 @@ selectHome(user){
     }
   }
   foundRejected(){
-    this.dbPendingUsers.where('status','==','rejected').onSnapshot((res)=>{
-      this.countDeclined = res.size;
-      res.forEach((doc)=>{
-        this.declinedUser.push(doc);
-      })
-    })
+ 
   }
 /*   ownersrequestsFunc() {
     this.home = 'disappear';
