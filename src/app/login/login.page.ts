@@ -13,7 +13,7 @@ export class LoginPage implements OnInit {
 
 //  @ViewChild('')
 //@ViewChild('myslider') slides: Slides;
-@ViewChild('myslider', {static: true}) slides: IonSlides;
+ @ViewChild('myslider', {static: true}) slides: IonSlides;
 // slideOpts = {
 //   initialSlide: 1,
 //   speed: 400
@@ -54,22 +54,33 @@ bio;
   }
   login(){
     this.presentLoadingWithOptions();
-    let uidUser = firebase.auth().currentUser.uid;
-     this.dbAdmin.where('uid','==', uidUser).get().then((res)=>{
-       if(res.size<=0){
-       this.presentAlert('Admin not found', 'Create account');
-        this.slides.slideNext();
+    firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((results)=>{ 
+      //console.log(results.user.uid);
+      this.dbAdmin.where('uid','==',results.user.uid).get().then((res)=>{
+        if(res.size<=0){
+              this.presentAlert('Admin not found', 'Create account');
+              this.slides.slideNext();
       // this.router.navigateByUrl('login');
-      } else {
-        firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((results)=>{ 
-            console.log(results);
-        }).catch((error)=>{
-      this.presentAlert(error.code, error.message);
-   //  console.log(error);
-    })
-    console.log('Login button');
-  }
-  })
+        }
+      }).catch((error)=>{
+        this.presentAlert(error.code, error.message);
+        //  console.log(error);
+        })
+  }).catch((error)=>{
+this.presentAlert(error.code, error.message);
+//  console.log(error);
+})
+    // let uidUser = firebase.auth().currentUser.uid;
+    //  this.dbAdmin.where('uid','==', uidUser).get().then((res)=>{
+    //    if(res.size<=0){
+    //    this.presentAlert('Admin not found', 'Create account');
+    //   //  this.slides.slideNext();
+    //   // this.router.navigateByUrl('login');
+    //   }
+    //  )}
+  //   console.log('Login button');
+ /// console.log('Clicked');
+  
 }
   // async loginUser(loginForm: FormGroup): Promise<void> {
   //   if (!loginForm.valid) {

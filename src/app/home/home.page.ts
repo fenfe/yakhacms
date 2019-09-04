@@ -14,7 +14,7 @@ import { snapshotToArray } from '../app.firebase.config';
 })
 export class HomePage {
   //active: string = 'active';
- 
+  mQuote;
   home: string = 'home-active';
   messages:  string = 'messages-inactive';
   homeOwnerProfiles: string = 'homeOwnerProfiles-inactive';
@@ -49,6 +49,10 @@ userD;
   incomingID;
   declinedUser = [];
   countDeclined = 0;
+  messageCount = 0;
+  messQuote = [];
+  msg: any;
+  msgDetails: any[];
   constructor(private router: Router, public loadingController: LoadingController, public modalController: ModalController) {
  
     this.dbAdmin.where('uid','==',firebase.auth().currentUser.uid).get().then((res)=>{
@@ -80,6 +84,14 @@ userD;
     this.getBuilder();
     this.getBuilda();
     this.getPendingUsers();
+    this.dbQuotes.onSnapshot((res)=>{
+      this.messageCount = res.size;
+      res.forEach((doc)=>{
+        this.messQuote.push(doc.data());
+        console.log(this.messQuote);
+        this.mQuote = doc.id;
+      })
+    })
   }
 
   //modals
@@ -172,6 +184,14 @@ delete(value){
 });
   //console.log('Info '+ )
 }
+deleteMsg(value){
+ this.dbQuotes.doc(this.mQuote).delete().then((res)=>{
+   console.log('Message deleted');
+   this.messQuote = [];
+ }).catch(function(error) {
+  console.error("Error removing document: ", error);
+});
+}
 deleteBuilder(value){
   this.dbBuilder.doc(this.deleteBricklayer).delete().then((res)=> {
     console.log("Document successfully deleted!");
@@ -227,6 +247,20 @@ selectHome(user){
     }
   })
 }
+  selectMessage(msg){
+    this.msg = msg;
+    this.msgDetails = [];
+    this.dbQuotes.where('date','==', msg.date).onSnapshot((snapshot)=>{
+      if(snapshot.empty){
+        console.log('No message found');
+        
+      } else {
+        snapshot.forEach((doc)=>{
+          this.msgDetails.push(doc.data());
+        })
+      }
+    })
+  }
    homeFunc() {
     this.navigation = "Dashboard/Home";
     this.home = 'home-active';

@@ -40,11 +40,11 @@
               <!-- <div class="box3" > <div class="numberholder"><p></p></div></div> -->
            </div>
 
-          <!-- <div class="box" [class]="" (click)="messagesFunc()">
+          <div class="box" [class]="" (click)="messagesFunc()">
             <div class="box1"><ion-icon name="mail" style="color: gray; font-size: 2.2vw;text-align: center;" ></ion-icon></div>
             <div class="box2"> <p>Messages</p></div>
-            <div class="box3" ><div class="numberholder"><p>0</p></div></div>
-         </div> -->
+            <div class="box3" ><div class="numberholder"><p>{{messageCount}}</p></div></div>
+         </div>
 
           <div class="box" [class]="" (click)="homeOwnerProfilesFunc()" >
               <div class="box1"><ion-icon name="person" style="color: gray; font-size: 2.2vw"></ion-icon></div>
@@ -120,16 +120,16 @@
 
       <!-- messages starts here -->
       <div [class]="messages">
-          <div class="list">
+          <div class="list" >
 
-              <div class="card">
+              <div class="card" *ngFor="let m of messQuote" (click)="selectMessage(m)">
                 <div class="image">
-                  <div class="imageholder"></div>
+                  <div class="imageholder"><img src="{{m.houseImage}}"> </div>
                 </div>
                 <div class="info">
-                  <H4>Kaboentle Dikutle</H4>
-                  <p>kabo@cutemail.com</p>
-                  <p>082 510 3130</p>
+                  <H4>{{m.email}}</H4>
+                  <p>{{m.comment}}</p>
+                  <p style="font-size: 10px; font-style: italic">{{m.date}}</p>
                 </div>
               </div>
      
@@ -150,29 +150,30 @@
                         
                       
                      </div>
-                     <div class="image" >
-                         <img src="../../assets/idris.jpg" alt="" class="src" width="100%" height=100%>
+                     <div class="image" *ngFor="let msg of msgDetails">
+                         <img src="{{msg.houseImage}}" alt="" class="src" width="100%" height=100%>
                      </div>
                    <div class="border2"></div>
                    </div>
                    
                  </div><!-- END OF CARD -->
               </div>
-              <div class="bottom">
+              <div class="bottom" *ngFor="let msg of msgDetails">
                
                   <div class="names2">
-                   <H3>Kaboentle Mabiletsa</H3>
-                    <p>Kabo@cutemail.com</p>
-                    <p>082 510 3130</p> 
+                   <H3>{{msg.email}}</H3>
+                   
+                    <p> {{msg.hOwnerPhone}}</p>
+                    <p>{{msg.date}}</p> 
                   </div>
      <div class="reply">
-
+     
      </div>
                    <div class="bottom2">
                      <div class="textarea">
-                      <p> laying out print, designs. T thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum .</p>
+                      <p>{{msg.comment}}</p>
                     <div class="delete">
-                    <button id="delete" ion-button small primary style="width: 90%;outline-style: none;letter-spacing: 1px;height: 80%;background: #f15a24;color:white;border-radius: 5px">Delete</button>
+                    <button id="delete" ion-button small primary style="width: 90%;outline-style: none;letter-spacing: 1px;height: 80%;background: #f15a24;color:white;border-radius: 5px" (click)="deleteMsg(msg)">Delete</button>
 
                     </div>
 
@@ -181,7 +182,7 @@
 
     
  
-                 <div class="two">
+                 <!-- <div class="two">
      <p placeholder="Type message here to reply.... "></p>
                
      <div class="btns">
@@ -190,7 +191,7 @@
 
                 </div>
     </div>
-      
+       -->
                    </div>
                     
              
