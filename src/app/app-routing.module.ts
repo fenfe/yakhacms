@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: 'messages', loadChildren: './messages/messages.module#MessagesPageModule' },
   { path: 'test', loadChildren: './test/test.module#TestPageModule' },
   { path: 'view-qoutes-builder', loadChildren: './view-qoutes-builder/view-qoutes-builder.module#ViewQoutesBuilderPageModule' },
-  { path: 'view-request-owner', loadChildren: './view-request-owner/view-request-owner.module#ViewRequestOwnerPageModule' },
+  { path: 'view-request-owner', loadChildren: './view-request-owner/view-request-owner.module#ViewRequestOwnerPageModule' },  { path: 'reply-message', loadChildren: './reply-message/reply-message.module#ReplyMessagePageModule' },
+
 
 ];
 

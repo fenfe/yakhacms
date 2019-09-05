@@ -46,38 +46,86 @@
                   </ion-slide>
     
                   <ion-slide>
+                      <form [formGroup]="profileForm" >
+                          <ion-item >
+                              <ion-label  position="floating" style="letter-spacing: 0.7px;font-size:0.9vw; font-family:'Segoe UI';font-weight: 400">Full names</ion-label>
+                              <ion-icon class="icon" name="person"slot="end"></ion-icon>
+                              <ion-input formControlName="fullname" [(ngModel)]="fullname" type="text"  [class.invalid]="!profileForm.controls['fullname'].valid &&
+                              profileForm.controls['fullname'].touched">
+                          </ion-input>
+                          </ion-item>
+                          <ion-item class="error-message" *ngIf="!profileForm.controls['fullname'].valid &&
+                          profileForm.controls['fullname'].touched">
+                                <ion-label style="color: red">Your fullnames are required</ion-label>
+                         </ion-item>
+
+                         <ion-item >
+                            <ion-label  position="floating" style="letter-spacing: 0.7px;font-size:0.9vw; font-family:'Segoe UI';font-weight: 400">Username</ion-label>
+                            <ion-icon class="icon" name="person"slot="end"></ion-icon>
+                            <ion-input formControlName="username" [(ngModel)]="username" type="text"  [class.invalid]="!profileForm.controls['username'].valid &&
+                            profileForm.controls['username'].touched">
+                        </ion-input>
+                        </ion-item>
+                        <ion-item class="error-message" *ngIf="!profileForm.controls['username'].valid &&
+                        profileForm.controls['username'].touched">
+                              <ion-label style="color: red">Your username is required</ion-label>
+                       </ion-item>
+                         
+                      <ion-item>
+                          <ion-label position="floating" style="letter-spacing: 0.7px;font-size:0.9vw; font-family:'Segoe UI';font-weight: 400">Phone number</ion-label>
+                          
+                          <ion-input formControlName="cellno" [(ngModel)]="cellno" type="text"  [class.invalid]="!profileForm.controls['cellno'].valid &&
+                          profileForm.controls['cellno'].touched">
+                      </ion-input>
+                          <ion-icon class="icon" name="call"  slot="end"></ion-icon>
+                        </ion-item>
+                        <ion-item class="error-message" *ngIf="!profileForm.controls['cellno'].valid &&
+                        profileForm.controls['cellno'].touched">
+                              <ion-label style="color: red">Your phone number is required</ion-label>
+                       </ion-item>
+                       <ion-item>
+                          <ion-label position="floating" style="letter-spacing: 0.7px;font-size:0.9vw; font-family:'Segoe UI';font-weight: 400">Bio</ion-label>
+                          
+                          <ion-input formControlName="bio" [(ngModel)]="bio" type="text"  [class.invalid]="!profileForm.controls['bio'].valid &&
+                          profileForm.controls['bio'].touched">
+                      </ion-input>
+                          <ion-icon class="icon" name="document"  slot="end"></ion-icon>
+                        </ion-item>
+                        <ion-item class="error-message" *ngIf="!profileForm.controls['cellno'].valid &&
+                        profileForm.controls['cellno'].touched">
+                              <ion-label style="color: red">Bio is required</ion-label>
+                       </ion-item>
+                     
+                    <br>   
+                        <div  class="btn" >
+                          <ion-button [disabled]="!profileForm.valid" primary style="background: #0bacacab; width: 100%" (click)="createAccount()">Save profile</ion-button>
+                      </div>
+                      </form>
+
+
                  <!-- slide two --> 
-                 <div style="display: block;">
+                 <!-- <div style="display: block;">
                   <div class="imageholder" style="height:10vh">
                     <img src="../../assets/idris.jpg">
                   </div>
                   <ion-icon name="camera" id="camera" slot="end" style="color:#f38d69; font-size: 1.5vw"></ion-icon>
                 
             
-                    <ion-item >
-                        <ion-label  position="floating" style="letter-spacing: 0.7px;font-size:0.9vw; font-family:'Segoe UI';font-weight: 400">Username</ion-label>
-                        <ion-icon class="icon" name="person"slot="end"></ion-icon>
-                        <ion-input type="text"  [(ngModel)]="fullname" ></ion-input>
-                      </ion-item>
+                
           
-                      <ion-item>
-                          <ion-label position="floating" style="letter-spacing: 0.7px;font-size:0.9vw; font-family:'Segoe UI';font-weight: 400">Phone number</ion-label>
-                          
-                          <ion-input type="" style="border-bottom: 1px solid white" [(ngModel)]="cellno"></ion-input>
-                          <ion-icon class="icon" name="call"  slot="end"></ion-icon>
-                        </ion-item>
           
                         <ion-item>
                           <ion-label  position="floating" style="letter-spacing: 0.7px;font-size:0.9vw; font-family:'Segoe UI';font-weight: 400">Bio</ion-label>
                           <ion-icon class="icon" name="create"  slot="end"></ion-icon>
                           <ion-textarea type="text" rows="3" [(ngModel)]="bio"></ion-textarea>
-                        </ion-item>
+                        </ion-item> -->
           
           <!--               <button ion-button clear small half style="background: none;font-size: 0.7vw;letter-spacing: 0.6px; font-family: 'Segoe UI';">Submit</button>
-           -->              <div class="btn">
+           -->              
+           <!-- <div class="btn">
             <button ion-button style="background: #f38d69;font-size: 1vw;border-radius: 5px;width: 100%;height: 4.3vh;letter-spacing: 1px;color:white;outline: none"  (click)="createAccount()" >Submit</button>
           </div>
-                 </div>
+                 </div> -->
               
                     
                   </ion-slide>

@@ -23,12 +23,13 @@ cellno;
 bio;
   email;
   password;
+  username;
   dbAdmin = firebase.firestore().collection('admin');
   public loginForm: FormGroup;
-
-
+  public profileForm: FormGroup;
   constructor(public loadingController: LoadingController, public alertController: AlertController, public router: Router,
     private formBuilder: FormBuilder) { 
+      
       this.loginForm = this.formBuilder.group({
         email: ['', Validators.compose([Validators.required, Validators.email])],
         password: [
@@ -37,17 +38,19 @@ bio;
         ]
       });
 
-   
- 
-   
-
-     
+      this.profileForm = this.formBuilder.group({
+        fullname: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
+        username: ['', Validators.compose([Validators.required, Validators.maxLength(30)])],
+        cellno: ['', Validators.compose([Validators.required, Validators.maxLength(10)])],
+        bio: ['', Validators.compose([Validators.required, Validators.maxLength(250)])],
+      });
    }
+
+   
  
-  /*  ionViewDidLoad() { this.slides.lockSwipes(true) } */
-  
-  ngOnInit() {
+   ngOnInit() {
     //this.getProfile();
+    this.slides.lockSwipes(true);
   }
 
   getProfile(){
@@ -63,16 +66,21 @@ bio;
     this.presentLoadingWithOptions();
     firebase.auth().signInWithEmailAndPassword(this.email, this.password).then((results)=>{ 
       //console.log(results.user.uid);
-      this.dbAdmin.where('uid','==',results.user.uid).get().then((res)=>{
-        if(res.size<=0){
+      this.email='';
+      this.password='';
+      
+      this.dbAdmin.where('uid','==',results.user.uid).onSnapshot((res)=>{
+        if(res.size == 0){
               this.presentAlert('Admin not found', 'Create account');
+              this.slides.lockSwipes(false);
               this.slides.slideNext();
+              // this.router.ngOnDestroy();
       // this.router.navigateByUrl('login');
+        } else {
+          this.slides.slidePrev();
+          this.slides.lockSwipes(true);
         }
-      }).catch((error)=>{
-        this.presentAlert(error.code, error.message);
-        //  console.log(error);
-        })
+      })
   }).catch((error)=>{
 this.presentAlert(error.code, error.message);
 //  console.log(error);
@@ -149,9 +157,21 @@ this.presentAlert(error.code, error.message);
       name: this.fullname,
       cellno: this.cellno,
       bio: this.bio,
+      username: this.username,
       uid: firebase.auth().currentUser.uid
     })
-    console.log('Clicked');
+    this.fullname = '';
+    this.cellno = 0;
+    this.bio = '';
+    this.username = null;
+    //console.log('Clicked');
     this.router.navigateByUrl('home');
   }
-}
+   
+
+     
+   }
+ 
+  /*  ionViewDidLoad() { this.slides.lockSwipes(true) } */
+  
+

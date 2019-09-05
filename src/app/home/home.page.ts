@@ -6,6 +6,7 @@ import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { snapshotToArray } from '../app.firebase.config';
+import { ReplyMessagePage } from '../reply-message/reply-message.page';
 
 @Component({
   selector: 'app-home',
@@ -53,9 +54,10 @@ userD;
   messQuote = [];
   msg: any;
   msgDetails: any[];
+  uidMatched: any;
   constructor(private router: Router, public loadingController: LoadingController, public modalController: ModalController) {
  
-    this.dbAdmin.where('uid','==',firebase.auth().currentUser.uid).get().then((res)=>{
+    /* this.dbAdmin.where('uid','==',firebase.auth().currentUser.uid).get().then((res)=>{
       if(res.size>0){
         res.forEach((doc)=>{
           console.log(doc.data());
@@ -63,7 +65,7 @@ userD;
       }  else {
           this.router.navigateByUrl('login') ;
       }
-    })
+    }) */
     this.dbPendingUsers.where('status','==','rejected').onSnapshot((res)=>{
       this.countDeclined = res.size;
       //console.log(this.countDeclined);
@@ -92,12 +94,33 @@ userD;
         this.mQuote = doc.id;
       })
     })
+
+    /* get uid */
+
+    this.uidMatched = firebase.auth().currentUser;
+
+    if(!this.uidMatched) {
+      this.router.navigateByUrl('login');
+
+    }else{
+      this.router.navigateByUrl('home');
+      let uid = this.uidMatched.uid;
+      console.log(uid, 'this is my uid ');
+      
+    }
   }
 
   //modals
   async presentModal() {
     const modal = await this.modalController.create({
       component: ViewQoutesBuilderPage
+    });
+    return await modal.present();
+  }
+
+  async replyModal() {
+    const modal = await this.modalController.create({
+      component: ReplyMessagePage
     });
     return await modal.present();
   }
@@ -161,6 +184,7 @@ getBuilder() {
 }
 getPendingUsers() {
   //this.createdQoutes();
+  this.incomingUsers = [];
   this.dbPendingUsers.where('status','==',false).onSnapshot((snapshot) => {
    if (snapshot.empty !== true) {
      snapshot.forEach((doc) => {
@@ -290,9 +314,10 @@ selectHome(user){
   }
   logout(){
     this.presentLoadingWithOptions();
-    firebase.auth().signOut().then(() => {
-      this.router.navigateByUrl('login');
-    })
+    firebase.auth().signOut().then((res)=>{
+      console.log(res);
+      
+    });
   }
   async presentLoadingWithOptions() {
     const loading = await this.loadingController.create({
@@ -319,6 +344,7 @@ selectHome(user){
     this. buildersQuotations = 'disappear'; */
   }
   acceptUser(value){
+    this.incomingUsers = [];
     if(value.status==false){
       this.dbPendingUsers.doc(this.incomingID).update({
         status:true
@@ -327,6 +353,7 @@ selectHome(user){
     }
   }
   decline(value){
+    this.incomingUsers = [];
     if(value.status==false){
       this.dbPendingUsers.doc(this.incomingID).update({
         status: "rejected"
