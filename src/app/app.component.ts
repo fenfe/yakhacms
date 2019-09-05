@@ -33,7 +33,16 @@ export class AppComponent {
   }
   catchUser(){
     firebase.auth().onAuthStateChanged((user)=>{
-      if(user.uid!=null){
+      if(user){
+       firebase.firestore().collection('admin').where('uid','==',user.uid).onSnapshot((res)=>{
+          if(res.size == 0){
+                // this.router.ngOnDestroy();
+        // this.router.navigateByUrl('login'); 
+         this.router.navigateByUrl('login')
+          } else {
+            this.router.navigateByUrl('home');
+          }
+        })
         this.router.navigateByUrl('home')
       } else{
         this.router.navigateByUrl('login')
