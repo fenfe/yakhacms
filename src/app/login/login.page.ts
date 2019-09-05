@@ -13,11 +13,11 @@ export class LoginPage implements OnInit {
 
 //  @ViewChild('')
 //@ViewChild('myslider') slides: Slides;
- @ViewChild('myslider', {static: true}) slides: IonSlides;
-// slideOpts = {
-//   initialSlide: 1,
-//   speed: 400
-// };
+  @ViewChild('myslider', {static: true} ) slides: IonSlides; 
+ 
+
+ 
+
 fullname;
 cellno;
 bio;
@@ -25,6 +25,8 @@ bio;
   password;
   dbAdmin = firebase.firestore().collection('admin');
   public loginForm: FormGroup;
+
+
   constructor(public loadingController: LoadingController, public alertController: AlertController, public router: Router,
     private formBuilder: FormBuilder) { 
       this.loginForm = this.formBuilder.group({
@@ -34,15 +36,20 @@ bio;
           Validators.compose([Validators.required, Validators.minLength(6)])
         ]
       });
-   }
 
+   
+ 
+   
+
+     
+   }
+ 
+  /*  ionViewDidLoad() { this.slides.lockSwipes(true) } */
+  
   ngOnInit() {
     //this.getProfile();
   }
-  ionViewWillEnter(){
-    // this.slideOpts;
-    // this.createAccount();
-  }
+
   getProfile(){
     this.dbAdmin.where('uid','==',firebase.auth().currentUser.uid).get().then((res)=>{
       if(res.size>0){

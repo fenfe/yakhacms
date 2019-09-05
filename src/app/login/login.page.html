@@ -11,7 +11,7 @@
           </div>
           
             <div class="sli">
-                <ion-slides #myslider>
+                <ion-slides #myslider >
                   <ion-slide >
                     <form [formGroup]="loginForm" >
 
@@ -23,7 +23,7 @@
                     </ion-item>
                     <ion-item class="error-message" *ngIf="!loginForm.controls['email'].valid &&
                        loginForm.controls['email'].touched">
-                      <ion-label style="color: red">Please enter a valid email address.</ion-label>
+                      <ion-label style="color: red; font-size:75%;letter-spacing: 1px">Please enter a valid email address.</ion-label>
                     </ion-item>
                 <br>
                     <ion-item style="border: 6px">
@@ -34,7 +34,7 @@
                     </ion-item>
                     <ion-item class="error-message" *ngIf="!loginForm.controls['password'].valid
                       && loginForm.controls['password'].touched">
-                      <ion-label style="color: red">Your password needs more than 6 characters.</ion-label>
+                      <ion-label style="color: red; font-size:75%;letter-spacing: 1px">Your password needs more than 6 characters.</ion-label>
                     </ion-item>
                 <br>
                    

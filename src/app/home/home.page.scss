@@ -590,28 +590,29 @@ ion-content {
                 
 
                     .list {
-                        // border: 1px solid rgb(12, 11, 11);
-                        width: 52%;
+                        // border: 1px solid red;
+                        width: 42%;
                         height: 95%;
                         overflow-y: scroll;
+ 
                         .card {
                             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
                             width: 96%;
                             height: 15%;
                             position: relative;
-                          // border: 1px solid red;
-                        
+                           
+                           
                             border-radius: 5px;
                             display: flex;
                             background: white;
-
+ 
                             .image {
-                               // border-right: 1px solid #f15a24;
+                                //border-right: 1px solid #f15a24;
                                 width: 20%;
                                 height: 100%;
                                 display: flex;
                                 justify-content: center;
-
+ 
                                 .imageholder {
                                     border: 2px solid gray;
                                     width: 67.5%;
@@ -619,14 +620,14 @@ ion-content {
                                     border-radius: 50%;
                                 }
                             }
-
+ 
                             .info {
-                                // border: 1px solid rgb(38, 0, 255);
-                                width: 80%;
+                               //  border: 1px solid rgb(38, 0, 255);
+                                width: 35vw;
                                 height: 100%;
-
+ 
                                 h4,
-                                p {
+                                p {//border: 1px solid red;
                                     display: grid;
                                     justify-content: start;
                                     align-items: center;
@@ -636,7 +637,7 @@ ion-content {
                                     font-size: 1vw;
                                     padding-top: 1%;
                                 }
-
+ 
                                 h4 {
                                     font-size: 1.2vw;
                                 }
