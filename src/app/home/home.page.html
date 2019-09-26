@@ -5,59 +5,66 @@
     <div class="image-khuthy"></div>
     <div class="header1">
       <h5>Content Management System</h5>
-      <p>Logout</p>
+      <ion-button fill="clear" (click)="logout()">LOGOUT</ion-button>
     </div>
   
-    <div class="header2">
+    <div class="header2" *ngFor="let u of adminDetails">
       <img src="../../assets/icon.png" alt="logo" height="100%">
       <h5>Yakha Dashboard</h5>
       <p>Manage your App here</p>
   
-      <p id="moveright"> Welcome back, Khutty</p>
+      <p id="moveright"> Welcome back, {{u.name}}</p>
       <div class="imageholder">
-  <div class="image"></div>
+  <div class="image" (click)="profile()"><img src="{{u.image}}"></div>
       </div>
     </div>
   
     <div class="content">
       <div class="bar">
-        <p>Dashboard / Home</p>
+        <p>{{navigation}}</p>
       </div>
   
   <div class="divide">
        <div class="topcolumns">
-        <div class="sidemenu">
-          <div class="dashboard">
+
+         <!-- side menu starts -->
+         <div class="sidemenu">
+
+          <div class="box" id="dashboard">
             <h6>Dashboard</h6>
           </div>
 
-          <div class="box" (click)="homeFunc()">
-              <div class="box1"><ion-icon name="home" style="color: gray; font-size: 2.5vw;text-align: center;" ></ion-icon></div>
-              <div class="box1"> <p>Home</p></div>
-              <div class="box1" class="last"><ion-icon name="checkmark-circle" class="nums"></ion-icon></div>
+          <div class="box" [class]="" (click)="homeFunc()">
+              <div class="box1"><ion-icon name="home" style="color: gray; font-size: 2.2vw;text-align: center;" ></ion-icon></div>
+              <div class="box2" id="ptag"> <p>Home</p></div>
+              <!-- <div class="box3" > <div class="numberholder"><p></p></div></div> -->
            </div>
 
-          <div class="box" (click)="messagesFunc()">
-            <div class="box1"><ion-icon name="mail" style="color: gray; font-size: 2.5vw;text-align: center;" ></ion-icon></div>
-            <div class="box1"> <p>Messages</p></div>
-            <div class="box1" class="last"><ion-icon name="checkmark-circle" class="nums"></ion-icon></div>
+          <div class="box" [class]="" (click)="messagesFunc()">
+            <div class="box1"><ion-icon name="mail" style="color: gray; font-size: 2.2vw;text-align: center;" ></ion-icon></div>
+            <div class="box2"> <p>Messages</p></div>
+            <div class="box3" ><div class="numberholder"><p>{{messageCount}}</p></div></div>
          </div>
 
-          <div class="box" >
-              <div class="box1"><ion-icon name="person" style="color: gray; font-size: 2.5vw"></ion-icon></div>
-              <div class="box1"> <p>Home Owners</p></div>
-              <div class="box1"  class="last"><ion-icon name="checkmark-circle" class="nums"></ion-icon></div>
+          <div class="box" [class]="" (click)="homeOwnerProfilesFunc()" >
+              <div class="box1"><ion-icon name="person" style="color: gray; font-size: 2.2vw"></ion-icon></div>
+              <div class="box2"> <p>Home Owners</p></div>
+              <div class="box3"  ><div class="numberholder"><p>{{numHomeOwner}}</p></div></div>
           </div>
 
-          <div class="box" style="border-bottom: none;height: 5%">
-              <div class="box1" ><ion-icon name="construct" style="color: gray; font-size: 2.5vw"></ion-icon></div>
-              <div class="box1"> <p>Builders</p></div>
-              <div class="box1"  class="last"><ion-icon name="checkmark-circle" class="nums"></ion-icon></div>
+          <div class="box" [class]="" (click)="builderProfilesFunc()">
+              <div class="box1" ><ion-icon name="construct" style="color: gray; font-size: 2.2vw"></ion-icon></div>
+              <div class="box2"> <p>Builders</p></div>
+              <div class="box3" ><div class="numberholder"><p>{{numBuilder}}</p></div></div>
           </div>
-        </div>
-   
-      </div>
-      <div class="rightside" *ngIf="home">
+        </div><!-- end of sidemenu -->
+
+      </div><!-- end of topcolumn -->
+
+
+      <div class="rightside" style="background: transparent">
+        <!-- start of home -->
+      <div  [class]="home">
         <div class="head">
           <p>App Overview Analytics</p>
         </div>
@@ -66,7 +73,7 @@
           <div class="one">
             <div class="divide">
                 <ion-icon name="people" style="color: gray; font-size: 4vw"></ion-icon>
-                <h3>127</h3>
+                <h3>{{numHomeOwner}}</h3>
             </div>
             <div class="name"><p>Home Owner</p></div>
           </div>
@@ -74,14 +81,14 @@
           <div class="one">
               <div class="divide">
                   <ion-icon name="construct" style="color: gray; font-size: 4vw"></ion-icon>
-                  <h3>183</h3>
+                  <h3>{{numBuilder}}</h3>
               </div>
               <div class="name"><p>Builders</p></div>
           </div>
           <div class="one">
               <div class="divide">
                   <ion-icon name="people" style="color: gray; font-size: 4vw"></ion-icon>
-                  <h3>28</h3>
+                  <h3>{{countDeclined}}</h3>
               </div>
               <div class="name"><p>Blocked Users</p></div>
           </div>
@@ -94,101 +101,259 @@
 
           <div class="contents">
              <div class="headings" id="heading">
-            <div class="two" style="border-right: 1px solid gray"><h4>Name</h4></div>
             <div class="two" style="border-right: 1px solid gray"><h4>Email</h4></div>
-            <div class="two"><h4>Joined Date</h4></div>
+            <div class="two" style="border-right: 1px solid gray"><h4>Type</h4></div>
+            <div class="two"><h4>Status</h4></div>
           </div>
 
-          <div class="headings">
-            <div class="two"><p>John Wick</p></div>
-            <div class="two"><p>Johnwick@movieshub.com</p></div>
-            <div class="two"><p>19 july 2002</p></div>
+          <div class="headings" *ngFor="let user of incomingUsers">
+            <div class="two"><p>{{user.email}}</p></div>
+            <div class="two"><p>{{user.userType}}</p></div>
+            <div class="two" style="display:flex; justify-content: space-between">
+              <!-- <p>{{user.status}}</p> -->
+               <ion-button (click)="acceptUser(user)" style="width: 45%; height:3vh">Accept</ion-button>
+               <ion-button (click)="decline(user)" tertiary style="width: 45%; height:3vh">Decline</ion-button>
+              </div>
           </div> 
           </div>
          
 
         </div>
       </div>
-      <div class="rightside" *ngIf="messages">
+      <!-- end of home -->
 
-          <div class="list">
-   
-            <div class="card">
-              <div class="image">
-                <div class="imageholder"></div>
-              </div>
-              <div class="info">
-                <H4>Kaboentle Dikutle</H4>
-                <p>kabo@cutemail.com</p>
-                <p>082 510 3130</p>
-              </div>
-            </div>
-   
-          </div>
-   
-          <div class="view">
-            <div class="top">
-              <!-- new -->
-              <div class="card" >
-                 <div class="border">
-                   <div class="backg1"></div>
-                   <div class="backg1b"></div>
-                   <div class="backg2">
-                       <h5></h5>
-                     <p></p> 
-                   </div>
-                   <div class="backg2b">
-                       <div class="stars">
-                           <ion-icon name="star" style="color: goldenrod"></ion-icon>
-                           <ion-icon name="star" style="color: goldenrod"></ion-icon>
-                           <ion-icon name="star" style="color: goldenrod"></ion-icon>
-                           <ion-icon name="star" style="color: goldenrod"></ion-icon>
-                           <ion-icon name="star" style="color: goldenrod"></ion-icon>
-                       </div>
-                    
-                   </div>
-                   <div class="image" >
-                       <img src="../../assets/idris.jpg" alt="" class="src" width="100%" height=100%>
-                   </div>
-                 <div class="border2"></div>
-                 </div>
-                 
-               </div><!-- END OF CARD -->
-            </div>
-            <div class="bottom">
-             
-                <div class="names2">
-                 <H3>Kaboentle Mabiletsa</H3>
-                  <p>Kabo@cutemail.com</p>
-                  <p>082 510 3130</p> 
+      <!-- messages starts here -->
+      <div [class]="messages">
+          <div class="list" >
+
+              <div class="card" *ngFor="let m of messQuote" (click)="selectMessage(m)" style="margin-bottom: 2% ">
+                <div class="image">
+                  <div class="imageholder"><img src="{{m.houseImage}}" height="100%" width="100%"> </div>
                 </div>
-   
-                 <div class="bottom2">
-                   <div class="textarea">
-                    
-     <p>Lorem ipsum, or lipsum as it is  laying out print, designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
-              
-   <div class="btn">
-   <p>Delete</p>
-   </div>
-   </div> 
-               <div class="two">
-   
-               </div>
-    
-                 </div>
-                  
-           
-             
-           
-            
+                <div class="info">
+                  <H4>{{m.email}}</H4>
+                  <p>{{m.comment}}</p>
+                  <p style="font-size: 10px; font-style: italic">{{m.date}}</p>
+                </div>
+              </div>
+     
             </div>
-          </div>
-         </div>
-  </div>
-   
+     
+            <div class="view">
+              <div class="top">
+                <!-- new -->
+                <div class="card" >
+                   <div class="border">
+                     <div class="backg1"></div>
+                     <div class="backg1b"></div>
+                     <div class="backg2">
+                         <h5></h5>
+                       <p></p> 
+                     </div>
+                     <div class="backg2b">
+                        
+                      
+                     </div>
+                     <div class="image" *ngFor="let msg of msgDetails">
+                         <img src="{{msg.houseImage}}" alt="" class="src" width="100%" height=100%>
+                     </div>
+                   <div class="border2"></div>
+                   </div>
+                   
+                 </div><!-- END OF CARD -->
+              </div>
+              <div class="bottom" *ngFor="let msg of msgDetails">
+               
+                  <div class="names2">
+                   <H3>{{msg.email}}</H3>
+                   
+                    <p> {{msg.hOwnerPhone}}</p>
+                    <p>{{msg.date}}</p> 
+                  </div>
+     <div class="reply">
+     
+     </div>
+                   <div class="bottom2">
+                     <div class="textarea">
+                      <p>{{msg.comment}}</p>
+                    <div class="delete" style="display: flex; justify-content: space-between">
+                  <!--  <button (click)="replyModal()" ion-button small primary style="width: 45%;outline-style: none;letter-spacing: 1px;height: 80%;background: #f15a24;color:white;border-radius: 5px" >Reply</button>  -->
+                    <button  ion-button small primary style="width: 45%;outline-style: none;letter-spacing: 1px;height: 80%;background: #bb0c0c;color:white;border-radius: 5px" (click)="deleteMsg(msg)" >Delete</button>
+
+                    </div>
+
+                      
+                     </div> 
+
+    
+ 
+                 <!-- <div class="two">
+     <p placeholder="Type message here to reply.... "></p>
+               
+     <div class="btns">
+                 <button ion-button small primary style="width: 45%;letter-spacing:1px;outline-style: none;background: #f15a24;color:white;border-radius: 5px">Reply via sms</button>
+                  <button ion-button small primary style="width: 45%;outline-style: none;letter-spacing:1px;background: rgb(39, 39, 10);color:white;border-radius: 5px">Reply via email</button>
+
+                </div>
     </div>
-  </div>
+       -->
+                   </div>
+                    
+             
+               
+             
+              
+              </div>
+            </div>
+      </div>
+      <!-- messages ends here -->
+
+   
+      <!-- home owners lists starts here -->
+  <div [class]="homeOwnerProfiles">
+      <div class="list">
+
+          <div class="card" *ngFor="let b of homeOwnerLi" (click)="selectHome(b)" style="margin-bottom: 2% ">
+            <div class="image">
+              <div class="imageholder"><img src="{{b.ownerImage}}" width="100%" height="100%"></div>
+            </div>
+            <div >
+              <div class="info">
+              <H4>{{b.fullname}}</H4>
+              <p>{{b.personalNumber}}</p>
+              <p>{{b.About}}</p>
+            </div>
+            </div>
+            
+          </div>
+ 
+        </div>
+ 
+        <div class="view">
+          <div class="top">
+            <!-- new -->
+            <div class="card" >
+               <div class="border">
+                 <div class="backg1"></div>
+                 <div class="backg1b"></div>
+                 <div class="backg2">
+                     <h5></h5>
+                   <p></p> 
+                 </div>
+                 <div class="backg2b">
+                   
+                  
+                 </div>
+                 <div class="image" *ngFor="let u of userDetails">
+                     <img src="{{u.ownerImage}}" alt="" class="src" width="100%" height=100%>
+                 </div>
+               <div class="border2"></div>
+               </div>
+               
+             </div><!-- END OF CARD -->
+
+          </div>
+         
+<!--   -->
+      <div class="bottom" *ngFor="let u of userDetails">
+       
+          <div class="names2" >
+            <p> {{u.fullname}} </p> 
+            <p> {{u.personalNumber}} </p>
+        
+          </div>
+
+           <div class="bottom2">
+             <div class="bio">
+              <p>{{u.About}}</p>
+             </div>
+          <div class="btn">
+          <!-- <button ion-button (click)="presentModal2()"  style="width: 45%; background: #ee8a67;outline-style: none;height: 55%; border-radius: 5px;letter-spacing: 1px;color:white;font-size:1vw">View Requests</button> -->
+          <button ion-button style="width: 45%; background: black;outline-style: none;height: 55%; border-radius: 5px;letter-spacing: 1px;color:white;font-size: 1vw" (click)="delete(u)" >Delete</button>
+          </div>
+        </div>
+            </div>
+        </div>
+      </div>
+      <!-- home owners lists ends here -->
+
+           <!-- builders  lists starts here -->
+  <div [class]="builderProfiles">
+    <div class="list">
+
+      <div class="card" *ngFor="let b of buildaLi" (click)="selectUser(b)" style="margin-bottom: 2%">
+        <div class="image">
+          <div class="imageholder"><img src="{{b.bricklayerImage}}" width="100%" height="100%"></div>
+        </div>
+        <div class="info">
+           <H4>{{b.fullName}}</H4>
+          <p>{{b.email}}</p>
+          <p></p>
+        </div>
+      </div>
+     
+    </div>
+
+    <div class="view">
+      <div class="top">
+        <!-- new -->
+        <div class="card"  >
+           <div class="border">
+             <div class="backg1"></div>
+             <div class="backg1b"></div>
+             <div class="backg2">
+                 <h5></h5>
+               <p></p> 
+             </div>
+             <div class="backg2b">
+               
+              
+             </div>
+             <div class="image" *ngFor="let u of userDetails">
+                 <img src="{{u.bricklayerImage}}" alt="" class="src" width="100%" height=100%>
+             </div>
+           <div class="border2"></div>
+           </div>
+           
+         </div><!-- END OF CARD -->
+
+      </div>
+
+<!--  -->
+      <div class="bottom"  *ngFor="let u of userDetails">
+       
+          <div class="names2">
+           <H3>{{u.fullName}}</H3>
+            <p>Certified = {{u.certified}}</p>
+            <p>Charges R {{u.price}}.00 per metre squred</p> 
+          </div>
+
+           <div class="bottom2">
+             <div class="bio">
+              <p>Lorem ipsum dolor sit amet consectetur
+                 adipisicing elit. Ut incidunt ratione
+                  nemo ipsam, recusandae dignissimos id
+                   exercitationem nostrum voluptatibus
+                    dolores dolorum corporis voluptas odit voluptatem?</p>
+             </div>
+          <div class="btn">
+          <!-- <button ion-button   style="width: 45%; background: #ee8a67;height: 55%; border-radius: 5px;letter-spacing: 1px;color:white;font-size:1vw">View Requests</button> -->
+          <button ion-button style="width: 45%; background: black;height: 55%; border-radius: 5px;letter-spacing: 1px;color:white;font-size: 1vw" (click)="deleteBuilder(u)">Delete</button>
+          </div>
+        </div>
+            </div>
+
+    </div>
+ 
+      </div>
+  <!-- home owners lists ends here -->
+
+      </div><!-- end of right side -->
+      
+
+  </div><!-- end of divide -->
+    </div><!-- end of content -->
+  </div><!-- end of container -->
   </ion-content>
   
 

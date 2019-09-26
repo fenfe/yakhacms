@@ -1,5 +1,6 @@
 {
   "name": "yakhacms",
   "integrations": {},
-  "type": "angular"
+  "type": "angular",
+  "app_id": ""
 }

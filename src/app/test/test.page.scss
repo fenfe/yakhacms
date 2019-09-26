@@ -1,16 +1,13 @@
 ion-content {
-    @import url('../../assets/fonts/frontages.otf');
-
     .container {
          height: 100%;
     background: white;
-   
+
     
  .image-svg {
-     font-family: 'Frontage Condensed Outline';
      position: absolute;
      background: url(../../assets/dashboard.svg);
-     background-position: 8vh -14vh;
+     background-position: center  center;
      background-size: cover;
      background-repeat: no-repeat;
      z-index: 4;
@@ -41,7 +38,7 @@ ion-content {
          width: 60%;  
          position: relative; 
          left: 20%;
-         top: 1vh;
+         top: 2vh;
        }
     }
     
@@ -80,10 +77,6 @@ ion-content {
              height:25%;
              padding-top: 10%;
           
-            }
-            button:hover {
-                background: green;
-                cursor: pointer;
             }
 
            

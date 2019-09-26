@@ -1,3 +1,5 @@
+import { ViewRequestOwnerPage } from './../view-request-owner/view-request-owner.page';
+import { ViewQoutesBuilderPage } from './../view-qoutes-builder/view-qoutes-builder.page';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
@@ -18,6 +20,9 @@ import { HomePage } from './home.page';
       }
     ])
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
+  entryComponents: [
+
+  ]
 })
 export class HomePageModule {}
